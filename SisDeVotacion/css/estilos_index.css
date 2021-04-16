@@ -1,0 +1,90 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+
+.contenedor-form {  /*modifica visualmente la clase contenedor-form de index.html */
+    position: relative;
+    top: 128px;
+    left: 328px; 
+    width: 625px;
+    height: 425px;
+    border: 2px solid #969696;
+    border-radius: 22px;
+    opacity: 1;
+}
+
+.contenedor-form .logo_CEIND img{
+    position: relative;
+    margin-top: 10%;
+    margin-left: 250px;
+    width: auto;
+    height: 100px;
+    border-radius: 22px;
+}
+
+.contenedor-form input[type="text"],
+.contenedor-form input[type="password"]{/* modifica visulamente los cuadros de usuario y contraseña en index.html*/
+    outline: none;
+    display: block;
+    width: 50%;
+    padding: 10px 15px;
+    color: #000000;
+    border: 1px solid #A8A8A8;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 10px 0 0 150px;
+    opacity: 1; 
+    text-align: left;
+    font: normal normal normal 16px/21px Roboto;
+    letter-spacing: 0px;
+}
+
+
+.contenedor-form input[type="submit"]{/*modifica visualmente la clase submit de index.html(inisio sesion)*/    
+    background: #3F97A7 0% 0% no-repeat padding-box;    
+    margin: 30px 220px;
+    width: 25%;
+    padding: 10px 1px;
+    border-radius: 4px;
+    border: 1px solid #A8A8A8;
+    text-align: center;
+    font: normal normal normal 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+    cursor: pointer;
+    transition: all .4s ease;
+    
+}
+
+.contenedor-form input[type="submit"]:hover{ /*cambia el color de la clase submit de index cuando pasa el mouse por ahi */
+    background: #D1D1D1;
+    border: 1px solid #3F97A7;
+    color:#000000
+}
+
+.contenedor-form .reset-password{ /*modifica visualmente el cuadro de la clase reset password "olvide mi contraseña" */
+    margin-left: 220px;
+    width: 25%;
+    text-align: center;
+    border-radius: 5px;        
+}
+
+.contenedor-form .reset-password a { /*modifica el "olvide mi contraseña" */
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 16px;
+}
