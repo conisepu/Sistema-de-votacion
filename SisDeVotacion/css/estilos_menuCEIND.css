@@ -37,8 +37,8 @@ nav{
 }
 .nav-links li{
     list-style: none;
-    
 }
+
 .nav-links a{
     text-decoration: none;
     text-align: left center;
@@ -51,6 +51,19 @@ nav{
 .nav-links a:hover{
     font-weight: bold;
     color:#3F97A7
+}
+
+.nav-links li ul{
+    display:none;
+    position: absolute;
+    min-width: auto;
+    padding: 2px 10px;
+    background-color: white;
+    border:1px solid #969696;
+
+}
+.nav-links li:hover > ul{
+    display:block;
 }
 .nav-links li img{
     vertical-align: middle;
