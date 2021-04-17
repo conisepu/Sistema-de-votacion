@@ -52,6 +52,23 @@ nav{
     font-weight: bold;
     color:#3F97A7
 }
+.nav-links a p{
+    margin-left: 5vh;
+}
+.nav-links li ul{ /*modificacion de los despliegues*/
+    display:none;
+    position: absolute;
+    min-height: auto;
+    min-width: auto;
+    padding: 5px 10px;
+    background-color: white;
+    border:1px solid #969696;
+    transition: all .1s ease;
+
+}
+.nav-links li:hover > ul{
+    display:block;
+}
 .nav-links li img{
     vertical-align: middle;
     width: auto;
