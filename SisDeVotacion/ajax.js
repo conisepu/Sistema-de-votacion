@@ -1,3 +1,4 @@
+//CREA UNA NUEVA VOTACION
 $('#manage_survey').submit(function(e){
     e.preventDefault()
     $('input').removeClass("border-danger")

@@ -27,11 +27,16 @@ Class Action {
 				}
 			}
 		}
-		
-			$save = $this->db->query("INSERT INTO votacion set $data");
 
+		if(empty($id)){
+			$save = $this->db->query("INSERT INTO votacion set $data");
+		}else{
+			$save = $this->db->query("UPDATE votacion set $data WHERE id = $id");
+		}
+		
 		if($save)
-			return 1;
+		return 1;
+		
 	}
 
 	function delete_survey(){
