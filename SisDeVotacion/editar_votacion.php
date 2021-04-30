@@ -77,9 +77,9 @@ foreach($qry as $k => $v){
 				</div>
 				<div class="card-body p-0 py-2">
 					<div class="container-fluid">
-						<p>Title: <b><?php echo $stitle ?></b></p>
-						<p>Start: <b><?php echo date("M d, Y",strtotime($start_date)) ?></b></p>
-						<p>End: <b><?php echo date("M d, Y",strtotime($end_date)) ?></b></p>
+						<p>Titulo: <b><?php echo $stitle ?></b></p>
+						<p>Fecha inicio: <b><?php echo date("M d, Y",strtotime($start_date)) ?></b></p>
+						<p>Fecha final: <b><?php echo date("M d, Y",strtotime($end_date)) ?></b></p>
 
 					</div>
 					<hr class="border-primary">
@@ -91,8 +91,7 @@ foreach($qry as $k => $v){
 				<div class="card-header">
 					<h3 class="card-title"><b>Preguntas</b></h3>
 					<div class="card-tools">
-						<button class="btn btn-block btn-sm btn-default btn-flat border-success new_question" type="button"><i class="fa fa-plus"></i> Agregar nueva pregunta</button>
-            +<?php echo $id ?>+   
+						<button class="btn btn-block btn-sm btn-default btn-flat border-success new_question" type="button"><i class="fa fa-plus"></i> Agregar nueva pregunta</button> 
           </div>
 				</div>
 				<form action="" id="manage-sort">
@@ -141,10 +140,10 @@ foreach($qry as $k => $v){
                 <?php endwhile; ?>
                 <?php else: ?>
                 <div class="form-group">
-                    <textarea name="answer[<?php echo $row['id_pregunta'] ?>]" id="" cols="30" rows="4" class="form-control" placeholder="Write Something Here..."></textarea>
+                    <textarea class="form-control" placeholder=""></textarea>
                 </div>
                 <?php endif; ?>              
-
+                
 						</div>	
 					</div>
 					<?php endwhile; ?>
@@ -161,14 +160,14 @@ foreach($qry as $k => $v){
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title">Confirmation</h5>
+        <h5 class="modal-title">Confirmacion</h5>
       </div>
       <div class="modal-body">
         <div id="delete_content"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id='confirm' onclick="">Continue</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id='confirm' onclick="">Continuar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
       </div>
     </div>
@@ -182,8 +181,8 @@ foreach($qry as $k => $v){
       <div class="modal-body">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id='submit' onclick="$('#uni_modal form').submit()">Save</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id='submit' onclick="$('#uni_modal form').submit()">Aceptar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
       </div>
       </div>
     </div>
@@ -217,10 +216,17 @@ foreach($qry as $k => $v){
 
 </body>
 <script> 
+
 // GUARDAR UNA PREGUNTA
 $('.new_question').click(function(){
-    uni_modal("New Question","manage_question.php?id=<?php echo $id ?>","large")
+    uni_modal("Nueva pregunta ","manage_question.php?id=<?php echo $id ?>","large")
 })
+
+//EDITAR UNA PREGUNTA 
+$('.edit_question').click(function(){
+		uni_modal("Pregunta","manage_question.php?id=<?php echo $id ?>&id_pregunta="+$(this).attr('data-id'),"large")
+	})
+
 //ELIMINAR UNA PREGUNTA
 $('.delete_question').click(function(){
 _conf("Estas seguro de borrar esta pregunta?","delete_question",[$(this).attr('data-id')])
@@ -245,6 +251,8 @@ function delete_question(){
         }
     })
 }
+
+
 </script>
 
 

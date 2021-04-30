@@ -95,13 +95,13 @@
 						<td class="text-center">
 		                    <div class="btn-group">
 		                        <a href="./edit_encuesta.php?page=edit_encuesta&id=<?php echo $row['id'] ?>"class="btn  btn-flat">
-		                          <i class="fas fa-edit"></i>
+		                          <i class="fas fa-pencil-alt"></i>
 		                        </a>
 		                        <a  href="./editar_votacion.php?&id=<?php echo $row['id'] ?>" class="btn  btn-flat">
-		                          <i class="fas fa-eye"></i>
+		                          <i class="fas fa-plus-circle"></i>
 		                        </a>
 		                        <button type="button" class="btn  btn-flat delete_survey" data-id="<?php echo $row['id'] ?>">
-		                          <i class="fas fa-trash"></i>
+		                          <i class="fas fa-eraser"></i>
 		                        </button>
 	                      </div>
 						</td>
@@ -123,14 +123,14 @@
     <div class="modal-dialog modal-sm" role="document">
       <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title">Confirmation</h5>
+        <h5 class="modal-title">Confirmar</h5>
       </div>
       <div class="modal-body">
         <div id="delete_content"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id='confirm' onclick="">Continue</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id='confirm' onclick="">Continuar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
       </div>
     </div>

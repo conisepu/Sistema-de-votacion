@@ -10,7 +10,7 @@
 
 include 'menu_CEIND.php';
 ?>
-soy la pagina de editar
+
 
     
 

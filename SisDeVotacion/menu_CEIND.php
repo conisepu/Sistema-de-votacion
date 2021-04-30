@@ -82,7 +82,6 @@
 					<button class="btn btn-secondary" type="button" onclick="location.href = 'index.php?page=survey_list'">Cancelar</button>
 				</div>
 			</form>
-            <?php echo isset($id) ? $id : 'aaaa' ?>
 		</div>
 	</div>
 </div>
