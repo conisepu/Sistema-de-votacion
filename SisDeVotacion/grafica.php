@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="css/estilos_resultados_estudiante.css">
         
     </head>
+    <?php include'conexion/db.php' ?>
+    <?php $_GET['id'] ?>
     <body>
 
         <script src="js/jquery-3.6.0.min.js"></script>
@@ -15,7 +17,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script sec="main.js"></script>
-    
+
         <nav>
             
             <div class="logo_CEIND">
@@ -51,15 +53,21 @@
 
 
         <div class="container">
+        <?php
+            $var=$_GET['id'];
+	        $qry = $conn->query("SELECT * FROM votacion WHERE id=$var order by date(start_date) asc,date(end_date) asc ");
+            while($row= $qry->fetch_assoc()):
 
+	    ?>
 
             <div class="row">
                 <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
                     <div class="card-header">Fecha</div>
                     <div class="card-body">
-                        <h5 class="card-title">23/04/2021</h5>
+                        <h5 class="card-title"> <?php echo date("M d, Y",strtotime($row['end_date'])) ?> </h5>
                     </div>
                 </div>
+
                 <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
                     <div class="card-header">Votantes</div>
                     <div class="card-body">
@@ -82,7 +90,8 @@
 
             <div class="row my-3">
                 <div class="col-md-12 text-center">
-                    <h2> TITULO DE LA VOTACION <h2>
+                    <h2>  <h2>
+                    <?php echo $_GET['id'] ?> 
                     <canvas id="idGrafica" class="grafica"></canvas>
             </div>
 
@@ -91,13 +100,12 @@
                     <div id="idContTabla"></div>
                 </div>
             </div>
-
-
-
+        <?php endwhile; ?>
 
 
 
         </div>
+
 
  
 

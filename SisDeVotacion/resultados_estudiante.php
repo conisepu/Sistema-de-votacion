@@ -91,7 +91,7 @@
                         <td><b><?php echo date("M d, Y",strtotime($row['end_date'])) ?></b></td> 
 						<td>
                             <li>
-                                <a href="grafica.html"><b><?php echo ucwords($row['title']) ?></b></a>
+                                <a href="grafica.php?&id=<?php echo $row['id'] ?>"><b><?php echo ucwords($row['title']) ?></b></a>
                             </li>
                             
                         </td>
