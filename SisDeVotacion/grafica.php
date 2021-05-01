@@ -122,7 +122,7 @@
                     labels:["Fernanda Montes","Bastian Sanchez","Eduadi Carrasco","Pedro Saez"],
                     datasets:[
                         {
-                            label:"Votos",
+                            label:"% de Votos",
                             backgroundColor:"rgb(62, 185, 193)",
                             data:[14,60,6,20]
 
