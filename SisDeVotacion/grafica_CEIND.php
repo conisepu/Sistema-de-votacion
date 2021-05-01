@@ -3,7 +3,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>RESULTADOS GRAFICA</title>
+        <title>RESULTADOS GRAFICA CEIND</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <link rel="stylesheet" href="css/estilos_resultados_estudiante.css">
         
@@ -25,31 +25,47 @@
             </div>
             <ul class="nav-links">
                 <li>
-                    <a href="menu_estudiante.html">Votaciones</a>
+                    <a href="menu_CEIND.html">Votaciones</a>
                 </li>
 
                 <li>
-                    <a href="resultados_estudiante.html">Resultados</a>
+                    <a href="resultados_CEIND.php">Resultados</a>
                 </li>
 
                 <li>
-                     <a href="admin_CEIND.html">Administración</a>
-                </li>
+                    <a href="#">Listas</a> 
+                    <ul>
+                        <li><a href="Listas_Alumnos.html">Listas Alumnos</a></li>
+                        <li><a href="#">Listas Profesores</a></li>
+                        <li><a href="#">Listas Administracion</a></li>
+                    </ul>
+               </li>
 
-                <li>                
-                      
+                <li>
+                    <a href="#">Tricel</a> 
+               </li>
+
+
+                <li>                    
                     <a href="#">
-                        <img src="img/img_perfil.png" alt="imgPerfil">  
-                        <b>ESTUDIANTE</b>
-                        <p>Francisca Ramirez</p>
-                    </a>  
+                        <img src="img/logo_CEIND.jpg" alt="imgPerfil">
+                         Administrador CEIND
+                    </a>
                     <ul>
                         <li><a href="#">Cambiar contraseña</a></li>
                     </ul>
                 </li>
             </ul>
-
+            <div class="burger">
+                <div class="linea1"></div>
+                <div class="linea2"></div>
+                <div class="linea3"></div>
+            </div>
         </nav>
+
+
+
+
 
 
         <div class="container">
@@ -119,7 +135,7 @@
             var chart = new Chart(miCanvas,{
                 type:"bar",
                 data:{
-                    labels:["Fernanda Montes","Bastian Sanchez","Eduadi Carrasco","Pedro Saez"],
+                    labels:["Fernanda Montes","Bastian Sanchez","Eduardo Carrasco","Pedro Saez"],
                     datasets:[
                         {
                             label:"% de Votos",

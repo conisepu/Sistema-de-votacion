@@ -3,19 +3,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>RESULTADOS ESTUDIANTE</title>
+        <title>RESULTADOS CEIND</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <link rel="stylesheet" href="css/estilos_resultados_estudiante.css">
         
     </head>
     <body>
-
         <script src="js/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script sec="main.js"></script>
-    
+        
         <nav>
             
             <div class="logo_CEIND">
@@ -23,24 +22,32 @@
             </div>
             <ul class="nav-links">
                 <li>
-                    <a href="menu_estudiante.html">Votaciones</a>
+                    <a href="menu_CEIND.html">Votaciones</a>
                 </li>
 
                 <li>
-                    <a href="resultados_estudiante.html">Resultados</a>
+                    <a href="#">Resultados</a>
                 </li>
 
                 <li>
-                     <a href="admin_CEIND.html">Administración</a>
-                </li>
+                    <a href="#">Listas</a> 
+                    <ul>
+                        <li><a href="Listas_Alumnos.html">Listas Alumnos</a></li>
+                        <li><a href="#">Listas Profesores</a></li>
+                        <li><a href="#">Listas Administracion</a></li>
+                    </ul>
+               </li>
 
-                <li>                
-                      
+                <li>
+                    <a href="#">Tricel</a> 
+               </li>
+
+
+                <li>                    
                     <a href="#">
-                        <img src="img/img_perfil.png" alt="imgPerfil">  
-                        <b>ESTUDIANTE</b>
-                        <p>Francisca Ramirez</p>
-                    </a>  
+                        <img src="img/logo_CEIND.jpg" alt="imgPerfil">
+                         Administrador CEIND
+                    </a>
                     <ul>
                         <li><a href="#">Cambiar contraseña</a></li>
                     </ul>
@@ -52,10 +59,6 @@
                 <div class="linea3"></div>
             </div>
         </nav>
-
-
-
-
 
         <?php include'conexion/db.php' ?>
 <!-- LISTADO DE VOTACIONES -->
@@ -91,7 +94,7 @@
                         <td><b><?php echo date("M d, Y",strtotime($row['end_date'])) ?></b></td> 
 						<td>
                             <li>
-                                <a href="grafica_estudiante.php?&id=<?php echo $row['id'] ?>"><b><?php echo ucwords($row['title']) ?></b></a>
+                                <a href="grafica_CEIND.php?&id=<?php echo $row['id'] ?>"><b><?php echo ucwords($row['title']) ?></b></a>
                             </li>
                             
                         </td>
@@ -122,5 +125,10 @@
         
         <script src="js/js_resultado_estudiante.js"></script>
         
+    </body>
+</html>
+    
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/js_resultados_CEIND.js"></script>
     </body>
 </html>
