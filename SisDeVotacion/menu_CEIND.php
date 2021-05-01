@@ -59,20 +59,20 @@
 	<div class="card">
 		<div class="card-body">
 			<form id="manage_survey">
-				<input type="hidden" name="id" >
+				<input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
 				<div class="row">
 					<div class="col-md-8 mx-auto ">
 						<div class="form-group">
 							<label for="" class="control-label">Titulo</label>
-							<input type="text" name="title" class="form-control form-control-sm" >
+							<input type="text" name="title" class="form-control form-control-sm" required value="<?php echo isset($stitle) ? $stitle : '' ?>">
 						</div>
 						<div class="form-group">
 							<label for="" class="control-label">Inicio</label>
-							<input type="date" name="start_date" class="form-control form-control-sm" >
+							<input type="date" name="start_date" class="form-control form-control-sm"  required value="<?php echo isset($start_date) ? $start_date : '' ?>">
 						</div>
 						<div class="form-group">
 							<label for="" class="control-label">Fin</label>
-							<input type="date" name="end_date" class="form-control form-control-sm" >
+							<input type="date" name="end_date" class="form-control form-control-sm" required value="<?php echo isset($end_date) ? $end_date : '' ?>">
 						</div>
 					</div>
 				</div>

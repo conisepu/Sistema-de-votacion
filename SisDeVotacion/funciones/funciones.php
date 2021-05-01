@@ -27,11 +27,16 @@ Class Action {
 				}
 			}
 		}
-		
-			$save = $this->db->query("INSERT INTO votacion set $data");
 
+		if(empty($id)){
+			$save = $this->db->query("INSERT INTO votacion set $data");
+		}else{
+			$save = $this->db->query("UPDATE votacion set $data WHERE id = $id");
+		}
+		
 		if($save)
-			return 1;
+		return 1;
+		
 	}
 
 	function delete_survey(){
@@ -70,29 +75,69 @@ Class Action {
 					}
 				}
 			}
-			$save = $this->db->query("INSERT INTO preguntas set $data");
 
+			if(empty($id)){
+				$save = $this->db->query("INSERT INTO preguntas set $data");
+			}else{
+				$type_before = $this->db->query("SELECT * FROM opciones where idPregunta = ".$id);
+				// SIGNIFICA QUE TENIA OPCIONES , SE PROCEDE A BORRARLAS
+				if(mysqli_num_rows($type_before) > 0) {
+					$opciones = $this->db->query(" DELETE FROM opciones  where idPregunta = ".$id);
+					$save = $this->db->query("UPDATE preguntas set $data where id_pregunta = $id");
+				}
+				// SIGNIFICA QUE ERA UNA UNA PREGUNTA DE TEXTO Y SE MODIFICA LA PREGUNTA
+				else{
+					$save = $this->db->query("UPDATE preguntas set $data where id_pregunta = $id");
+				}
+			}
 		}
+
+
 		else{
 			$data = " id_votacion=$id_votacion ";
 			$data .= ", pregunta='$pregunta'";
 			$data .= ", type='$type'";
-			$save = $this->db->query("INSERT INTO preguntas set $data");
+			// SE ESTA CREANDO UNA NUEVA PREGUNTA
+			if(empty($id)){
+				$save = $this->db->query("INSERT INTO preguntas set $data");
 
-			$id =  mysqli_insert_id($this->db);
-
-			//OPCIONES MULTIPLE 
-
-			foreach ($opcion as $k => $v) {
-				$data = "";
-				$data = " idVotacion=$id_votacion ";
-				$data .= ",idPregunta=$id";
-				$data .= ",nombre='$v'";
-				$opcion = $this->db->query("INSERT INTO opciones set $data");
+				$idP =  mysqli_insert_id($this->db);
+	
+				//OPCIONES MULTIPLE 
+	
+				foreach ($opcion as $k => $v) {
+					$data = "";
+					$data = " idVotacion=$id_votacion ";
+					$data .= ",idPregunta=$idP";
+					$data .= ",nombre='$v'";
+					
+					$opcion = $this->db->query("INSERT INTO opciones set $data");
+				}
+	
+				if($opcion) {
+					return 1;
+				}
 			}
+			// SE ESTA ACTUALIZANDO UNA PREGUNTA 
+			else{
+				// SE PROCEDE A BORRAR LAS ANTERIORES PARA VOLVER A SUBIR LAS ACTUALIZADAS
+				$opciones = $this->db->query(" DELETE FROM opciones  where idPregunta = ".$id);
+				$save = $this->db->query("UPDATE preguntas set $data where id_pregunta = $id");
 
-			if($opcion) {
-				return 1;
+				//SE INSERTAN LAS NUEVAS OPCIONES 
+				foreach ($opcion as $k => $v) {
+					$data = "";
+					$data = " idVotacion=$id_votacion ";
+					$data .= ",idPregunta=$id";
+					$data .= ",nombre='$v'";
+					
+					$opcion = $this->db->query("INSERT INTO opciones set $data");
+				}
+	
+				if($opcion) {
+					return 1;
+				}
+
 			}
 
 		}
@@ -101,7 +146,7 @@ Class Action {
 			return 1;
 		}
 		else{
-			return($data);
+			return(-1);
 		}
 		
 	}
