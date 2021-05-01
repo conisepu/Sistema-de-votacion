@@ -90,8 +90,7 @@
 
             <div class="row my-3">
                 <div class="col-md-12 text-center">
-                    <h2>  <h2>
-                    <?php echo $_GET['id'] ?> 
+                    <h2> <?php echo ucwords($row['title']) ?> <h2>
                     <canvas id="idGrafica" class="grafica"></canvas>
             </div>
 
