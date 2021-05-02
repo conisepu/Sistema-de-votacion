@@ -35,9 +35,8 @@
                 <li>
                     <a href="#">Listas</a> 
                     <ul>
-                        <li><a href="Listas_Alumnos.html">Listas Alumnos</a></li>
-                        <li><a href="#">Listas Profesores</a></li>
-                        <li><a href="#">Listas Administracion</a></li>
+                        <li><a href="lista.php">Listas Alumnos</a></li>
+
                     </ul>
                </li>
 
