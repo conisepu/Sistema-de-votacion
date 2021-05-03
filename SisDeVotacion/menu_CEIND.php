@@ -18,7 +18,7 @@
             </div>
             <ul class="nav-links">
                 <li>
-                    <a href="menu_CEIND.html">Votaciones</a>
+                    <a href="lista.php">Votaciones</a>
                 </li>
 
                 <li>
@@ -79,7 +79,7 @@
 				<hr>
 				<div class="col-lg-12 text-right justify-content-center d-flex">
 					<button   class="btn btn-primary mr-2">Guardar</button>
-					<button class="btn btn-secondary" type="button" onclick="location.href = 'index.php?page=survey_list'">Cancelar</button>
+					<button class="btn btn-secondary" type="button" onclick="location.href = 'lista.php'">Cancelar</button>
 				</div>
 			</form>
 		</div>

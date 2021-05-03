@@ -96,7 +96,7 @@ foreach($qry as $k => $v){
 							  else if ($type == 'check_opt') {
 								  $new = 'new_check';
 							  }
-							 echo($new);
+							 
 							 ?>		
 							  	
 						      <div class="row">
@@ -147,10 +147,10 @@ foreach($qry as $k => $v){
 			        	</label>
 			        </div>
 		      	</td>
-
 		      	<td class="text-center">
 		      		<input type="text" class="form-control form-control-sm check_inp" name="opcion[]">
 		      	</td>
+				<td class="text-center btn_remove"><a href="javascript:void(0)"><span class="fa fa-times" ></span></a></td>	
 		      	<td class="text-center"></td>
 	     	</tr>
 	     	<tr class="">
@@ -161,10 +161,11 @@ foreach($qry as $k => $v){
 			        	</label>
 			        </div>
 		      	</td>
-
+				
 		      	<td class="text-center">
 		      		<input type="text" class="form-control form-control-sm check_inp" name="opcion[]">
 		      	</td>
+				<td class="text-center btn_remove"><a href="javascript:void(0)"><span class="fa fa-times" ></span></a></td>
 		      	<td class="text-center"></td>
 	     	</tr>
      	</tbody>
@@ -208,6 +209,8 @@ foreach($qry as $k => $v){
 		      	<td class="text-center">
 		      		<input type="text" class="form-control form-control-sm check_inp"  name="opcion[]">
 		      	</td>
+				  <!-- BOTON DE PRUEBA -->
+				<td class="text-center btn_remove"><a href="javascript:void(0)"><span class="fa fa-times" ></span></a></td>
 		      	<td class="text-center"></td>
 	     	</tr>
 	     	<tr class="">
@@ -218,10 +221,11 @@ foreach($qry as $k => $v){
 			        	</label>
 			        </div>
 		      	</td>
-
+						
 		      	<td class="text-center">
 		      		<input type="text" class="form-control form-control-sm check_inp"  name="opcion[]">
 		      	</td>
+				<td class="text-center btn_remove"><a href="javascript:void(0)"><span class="fa fa-times" ></span></a></td>	
 		      	<td class="text-center"></td>
 	     	</tr>
      	</tbody>
@@ -305,6 +309,10 @@ $('#manage-question').submit(function(e){
 })
 
 })
+$(document).on('click', '.btn_remove', function(){
+		var button_id = $(this).closest('tr');
+        $(button_id).remove();
+});
 
 
 </script>

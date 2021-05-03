@@ -17,7 +17,7 @@
             </div>
             <ul class="nav-links">
                 <li>
-                    <a href="menu_CEIND.html">Votaciones</a>
+                    <a href="lista.php">Votaciones</a>
                 </li>
 
                 <li>
@@ -60,7 +60,7 @@
 <div class="col-lg-12">
 	<div class="card card-outline card-primary">
 		<div class="card-header">
-				<a class="btn btn-block btn-sm btn-default btn-flat d-flex justify-content-end " href="./menu_CEIND.html">
+				<a class="btn btn-block btn-sm btn-default btn-flat d-flex justify-content-end " href="./menu_CEIND.php">
 				<i ></i> Añadir nueva encuesta
 				</a>
 				
