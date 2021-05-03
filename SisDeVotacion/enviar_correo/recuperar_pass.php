@@ -39,7 +39,7 @@ for( $i=1; $i<=$longitud; $i++) {
     }
 echo $password; //contraseña provisoria
 $hash = password_hash($password, PASSWORD_BCRYPT);
-$consulta = "UPDATE usuarios.usuarios SET pass = '$hash' WHERE usuarios.usuarios.mail='$email'"; 
+$consulta = "UPDATE sql10409436.usuarios SET pass = '$hash' WHERE sql10409436.usuarios.mail='$email'"; 
 $resultado = mysqli_query($conn,$consulta);
 //--------------------------------------------------------------
 

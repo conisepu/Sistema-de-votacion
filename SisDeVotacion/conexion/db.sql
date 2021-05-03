@@ -40,3 +40,9 @@ CREATE TABLE `votaciones_db`.`opciones` (
     REFERENCES `votaciones_db`.`preguntas` (`id_votacion` , `id_pregunta`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+CREATE TABLE `vptaciones_db`.`usuarios` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `mail` VARCHAR(45) NOT NULL,
+  `pass` CHAR(70) NULL,
+  PRIMARY KEY (`ID`));
