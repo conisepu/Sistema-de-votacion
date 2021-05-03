@@ -22,7 +22,7 @@
             </div>
             <ul class="nav-links">
                 <li>
-                    <a href="menu_CEIND.php">Votaciones</a>
+                    <a href="lista.php">Votaciones</a>
                 </li>
 
                 <li>
@@ -30,10 +30,8 @@
                 </li>
 
                 <li>
-                    <a href="#">Listas</a> 
-                    <ul>
-                        <li><a href="lista.php">Listas Alumnos</a></li>
-                    </ul>
+                    <a href="Listas_Alumnos.html">Listas alumno</a> 
+                   
                </li>
 
                 <li>
