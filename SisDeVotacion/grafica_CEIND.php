@@ -33,7 +33,7 @@
                 </li>
 
                 <li>
-                    <a href="#">Lista alumnos</a> 
+                    <a href="Listas_Alumnos.html">Lista alumnos</a> 
                     
                </li>
 
