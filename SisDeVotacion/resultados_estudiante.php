@@ -31,7 +31,7 @@
                 </li>
 
                 <li>
-                     <a href="admin_CEIND.php">Administración</a>
+                     <a href="#">Contacto</a>
                 </li>
 
                 <li>                
