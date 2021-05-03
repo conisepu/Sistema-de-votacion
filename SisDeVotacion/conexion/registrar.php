@@ -10,7 +10,7 @@ if (isset($_POST['register'])) {
 		
 
 		
-		$consulta2 = "SELECT * FROM usuarios.usuarios WHERE mail='$mail' ";//esta consulta sirve para verificar si existe el usuario en la base de datos
+		$consulta2 = "SELECT * FROM sql10409436.usuarios WHERE mail='$mail' ";//esta consulta sirve para verificar si existe el usuario en la base de datos
 		$resultado2 = mysqli_query($conn,$consulta2);
 
 		if(!empty($resultado2->fetch_array())){
@@ -20,7 +20,7 @@ if (isset($_POST['register'])) {
 
 			if(strpos($mail, $cadena_buscada)){
 				
-				$consulta = "INSERT INTO usuarios.usuarios(mail, pass) VALUES ('$mail','')";
+				$consulta = "INSERT INTO sql10409436.usuarios(mail, pass) VALUES ('$mail','')";
 				$resultado = mysqli_query($conn,$consulta);
 				include('../enviar_correo/recuperar_pass.php');
 

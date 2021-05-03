@@ -7,7 +7,7 @@ if (isset($_POST['login'])) {
         
 	    $correo = trim($_POST['user']);
         $pass = trim($_POST['pass']);
-	    $consulta = "SELECT pass, ID FROM usuarios.usuarios WHERE mail='$correo'";
+	    $consulta = "SELECT pass, ID FROM sql10409436.usuarios WHERE mail='$correo'";
         $hash = mysqli_query($conn,$consulta);
         $filas=mysqli_num_rows($hash);
         if($filas<1){
@@ -21,7 +21,7 @@ if (isset($_POST['login'])) {
                     $contrass=$hash2['pass'];
                     $ID_Usuario=$hash2['ID'];
                     echo '¡La contraseña es válida!';
-                    $consulta = "SELECT * FROM usuarios.usuarios WHERE mail='$correo' and pass='$contrass'"; //verifica si la contraseña y pass estan bien puestas
+                    $consulta = "SELECT * FROM sql10409436.usuarios WHERE mail='$correo' and pass='$contrass'"; //verifica si la contraseña y pass estan bien puestas
                     $resultado = mysqli_query($conn,$consulta);
                 
                     $filas=mysqli_num_rows($resultado);
