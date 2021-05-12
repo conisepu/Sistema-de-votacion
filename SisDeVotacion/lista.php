@@ -57,25 +57,21 @@
 	<div class="card card-outline card-primary">
 		<div class="card-header">
 				<a class="btn btn-block btn-sm btn-default btn-flat d-flex justify-content-end " href="./menu_CEIND.php">
-				<i ></i> Añadir nueva encuesta
+				  <i >Añadir nueva encuesta</i> 
 				</a>
-				
-		</div>
+    </div>
+
 		<div class="container card-body">
 			<table class="table tabe-hover table-bordered" id="list">
 				<colgroup>
 					<col width="5%">
 					<col width="20%">
-					<col width="20%">
-					<col width="20%">
-					<col width="20%">
-					<col width="15%">
+					<col width="5%">
 				</colgroup>
 				<thead>
 					<tr>
-						<th>Titulo</th>
-						<th>Inicio</th>
-						<th>Fin</th>
+            <th>Fecha de cierre</th>
+						<th>Titulo </th>						
 						<th>Acciones</th>
 					</tr>
 				</thead>
@@ -85,19 +81,18 @@
 					while($row= $qry->fetch_assoc()):
 					?>
 					<tr>
-						<td><b><?php echo ucwords($row['title']) ?></b></td>
-						<td><b><?php echo date("M d, Y",strtotime($row['start_date'])) ?></b></td>
-						<td><b><?php echo date("M d, Y",strtotime($row['end_date'])) ?></b></td>
+            <td class="fecha"><b><?php echo date("M d, Y",strtotime($row['end_date'])) ?></b></td>
+						<td class="titulo"><b><?php echo ucwords($row['title']) ?></b></td>
 						<td class="text-center">
 		                    <div class="btn-group">
 		                        <a href="./edit_encuesta.php?page=edit_encuesta&id=<?php echo $row['id'] ?>"class="btn  btn-flat">
-		                          <i class="fas fa-pencil-alt"></i>
+		                          <i class="fas fa-pencil-alt" title="Editar titulo y fecha"></i>
 		                        </a>
 		                        <a  href="./editar_votacion.php?&id=<?php echo $row['id'] ?>" class="btn  btn-flat">
-		                          <i class="fas fa-plus-circle"></i>
+		                          <i class="fas fa-plus-circle" title="Agregar pregunta"></i>
 		                        </a>
 		                        <button type="button" class="btn  btn-flat delete_survey" data-id="<?php echo $row['id'] ?>">
-		                          <i class="fas fa-eraser"></i>
+		                          <i class="fas fa-eraser" title="Eliminar"></i>
 		                        </button>
 	                      </div>
 						</td>
