@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Editar votacion</title>
-        <link rel="stylesheet" href="css/estilos_menuCEIND.css">
+        <link rel="stylesheet" href="css/estilos_editVotacion.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 		    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
@@ -69,7 +69,7 @@ foreach($qry as $k => $v){
 		<div class="col-md-4">
 			<div class="card card-outline card-primary">
 				<div class="card-header">
-					<h3 class="card-title">Informacion</h3>
+					<h3 class="card-title">Información</h3>
 				</div>
 				<div class="card-body p-0 py-2">
 					<div class="container-fluid">
@@ -87,7 +87,7 @@ foreach($qry as $k => $v){
 				<div class="card-header">
 					<h3 class="card-title"><b>Preguntas</b></h3>
 					<div class="card-tools">
-						<button class="btn btn-block btn-sm btn-default btn-flat border-success new_question" type="button"><i class="fa fa-plus"></i> Agregar nueva pregunta</button> 
+						<button class="btn btn-block btn-sm btn-default btn-flat border-success new_question" type="button"><i class="fa fa-plus"> </i>Agregar nueva pregunta</button> 
           </div>
 				</div>
 				<form action="" id="manage-sort">
