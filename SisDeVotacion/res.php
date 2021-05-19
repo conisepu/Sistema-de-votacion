@@ -58,6 +58,7 @@ foreach($qry as $k => $v){
         </nav>
 		<!-- VERIFICA SI LA ENCUESTA YA SE CONTESTO  -->
 		<?php 
+		$fechaActual = date('Y-m-d'); 
 		$i = 0;
 		$idUser =0;
 		$id_votacion= $id;
@@ -73,7 +74,13 @@ foreach($qry as $k => $v){
 
 		<div class="col-md-8 mx-auto">
 			<div class="card card-outline card-success">
-			<?php if ( $estadoUsuario == '0' ): ?>
+
+			<?php if ($fechaActual < $start_date  || $fechaActual > $end_date):  ?>
+				<div class = "mx-auto p-5">
+			<h3 ><b>Votacion fuera de la fecha permitida :)</b></h3>
+				</div>
+
+			<?php elseif ( $estadoUsuario == '0' ): ?>
 				<div class = "mx-auto p-5">
 					<h3 ><b><?php echo $stitle ?></b></h3>
 				</div>

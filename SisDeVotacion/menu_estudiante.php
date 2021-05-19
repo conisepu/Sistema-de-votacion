@@ -73,7 +73,8 @@
 				<tbody>
 					<?php
 					$qry = $conn->query("SELECT * FROM votacion order by date(start_date) asc,date(end_date) asc ");
-					$idUser =0; 
+					$idUser =0;
+                    $fechaActual = date('Y-m-d'); 
                     while($row= $qry->fetch_assoc()):
                         $idVotacion= $row['id'];
                         //estado de la votacion
@@ -85,7 +86,7 @@
 					<tr>
                 
                     <!-- ACA EMPIEZA EL INICIO DEL IF  -->
-                        <?php if ( $estadoUsuario == '0' ): ?>
+                        <?php if ( $estadoUsuario == '0'  && $fechaActual >= $row['start_date']  && $fechaActual <= $row['end_date']): ?>
                             <td><b> <i class="fas fa-lock-open"></i></b></td>
                             <td><a href="res.php?page=answer_survey&id=<?php echo $row['id'] ?>" > <b><?php echo ucwords($row['title']) ?></b></a></td>
                         <?php else: ?>
