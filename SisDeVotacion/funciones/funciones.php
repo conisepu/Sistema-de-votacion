@@ -30,12 +30,17 @@ Class Action {
 
 		if(empty($id)){
 			$save = $this->db->query("INSERT INTO votacion set $data");
-		}else{
-			$save = $this->db->query("UPDATE votacion set $data WHERE id = $id");
+			//se obtiene el id de $save 
+			$idV = mysqli_insert_id($this->db);
+			$estadoInicial = "id_votacion=$idV";
+			$estado = $this->db->query("INSERT INTO estados set $estadoInicial");
 		}
-		
+		else{
+			$save = $this->db->query("UPDATE votacion set $data WHERE id = $id");
+
+		}	
 		if($save)
-		return 1;
+				return 1;
 		
 	}
 
@@ -152,17 +157,56 @@ Class Action {
 	}
 	function delete_question(){
 	extract($_POST);
-	$opciones = $this->db->query(" DELETE FROM opciones where idPregunta = '".$ids[0]."' and idVotacion = '".$ids[1]."' ");
-	
-	$texto = "DELETE FROM preguntas where id_pregunta = ".$ids[0];
-	$delete = $this->db->query("DELETE FROM preguntas where id_pregunta = ".$ids[0]);
+	$opciones = $this->db->query(" DELETE FROM opciones where idPregunta =".$id);
+	$delete = $this->db->query("DELETE FROM preguntas where id_pregunta = ".$id);
 	if($delete){
 		return 1;
 	}
 	else{
 		return -1;
 	}
-}
+	
+	}
+
+	function save_answer(){
+		extract($_POST);
+		$idUser = 0 ;
+		$texto = "SELECT estado FROM estados WHERE id_votacion= $id_votacion and id_usuario= $idUser";
+		$estado =  $this->db->query("SELECT estado FROM estados WHERE id_votacion= $id_votacion and id_usuario= $idUser");
+		while ($row = $estado->fetch_assoc()) {
+			$estadoUsuario=$row['estado'];
+		}
+		
+		if($estadoUsuario == '0') {
+				foreach($qid as $k => $v){
+					//$qid[$k] es el id de la pregunta 
+					$data = " id_votacion=$id_votacion ";
+					$data .= ", id_pregunta=$qid[$k]" ;
+					
+					// //$data .= ", user_id='{$_SESSION['login_id']}' ";
+					
+					if($type[$k] == 'check_opt'){
+					$data .= ", respuesta='[".implode("],[",$answer[$k])."]' ";
+					}else{
+						$data .= ", respuesta='$answer[$k]' ";
+					}
+					$save[] = $this->db->query("INSERT INTO respuestas set $data");
+					
+				}
+						
+				
+			if(isset($save)){
+				//actualizar el estado de la pregunta 
+				$estado = "estado=1";
+				$nuevoEstado = $this->db->query("UPDATE estados set $estado WHERE id_votacion = $id_votacion");
+				return 1;
+			}
+		}
+		else {
+			return 0;
+		}
+	}
+
 
 
 }

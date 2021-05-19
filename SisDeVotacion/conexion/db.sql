@@ -41,8 +41,22 @@ CREATE TABLE `votaciones_db`.`opciones` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `vptaciones_db`.`usuarios` (
+CREATE TABLE `votaciones_db`.`usuarios` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `mail` VARCHAR(45) NOT NULL,
   `pass` CHAR(70) NULL,
   PRIMARY KEY (`ID`));
+
+  CREATE TABLE `votaciones_db`.`respuestas` (
+  `id_respuesta` INT NOT NULL AUTO_INCREMENT,
+  `id_votacion` INT NOT NULL,
+  `id_pregunta` INT NOT NULL,
+  `id_usuario` INT NOT NULL,
+  `respuesta` TEXT NOT NULL,
+  PRIMARY KEY (`id_respuesta`));
+
+CREATE TABLE `votaciones_db`.`estados` (
+  `id_votacion` INT NOT NULL,
+  `id_usuario` INT NOT NULL,
+  `estado` TINYINT NOT NULL,
+  PRIMARY KEY (`id_votacion`, `id_usuario`));

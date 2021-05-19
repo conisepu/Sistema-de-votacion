@@ -104,7 +104,7 @@ foreach($qry as $k => $v){
 									<div class="dropdown-menu" style="">
 								        <a class="dropdown-item edit_question text-dark" href="javascript:void(0)" data-id="<?php echo $row['id_pregunta'] ?>"  >Editar</a>
 								        <div class="dropdown-divider"></div>
-								        <a id="informacion"class="dropdown-item delete_question text-dark" href="javascript:void(0)" data-id='[<?php echo $row['id_pregunta'] ?> ,<?php echo $row['id_votacion'] ?>]'>Borrar</a>
+								        <a id="informacion"class="dropdown-item delete_question text-dark" href="javascript:void(0)" data-id="<?php echo $row['id_pregunta'] ?>">Borrar</a>
 								     </div>
 								</span>	
 							</div>
@@ -227,13 +227,13 @@ $('.edit_question').click(function(){
 $('.delete_question').click(function(){
 _conf("Estas seguro de borrar esta pregunta?","delete_question",[$(this).attr('data-id')])
 })
-function delete_question(){
+function delete_question($id){
     start_load()
-    $ids = $('#informacion').data('id');
+    
     $.ajax({
         url:'todb.php?action=delete_question',
         method:'POST',
-        data:{ids:$ids},
+        data:{id:$id},
         success:function(resp){
           console.log(resp);
             if(resp==1){

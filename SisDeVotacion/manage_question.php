@@ -82,6 +82,7 @@ foreach($qry as $k => $v){
 								      	<td class="text-center">
 								      		<input type="text" class="form-control form-control-sm check_inp"  name="opcion[]" value="<?php echo $op['nombre'] ?>">
 								      	</td> 
+										<td class="text-center btn_remove"><a href="javascript:void(0)"><span class="fa fa-times" ></span></a></td>
 								      	<td class="text-center"></td>
 							     	</tr>
 						     		<!-- ACA TERMINA UN WHILE -->

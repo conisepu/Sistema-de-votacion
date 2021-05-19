@@ -28,6 +28,11 @@ if($action == "delete_survey"){
 		echo $delete;
 }
 
+if($action == "save_answer"){
+	$save = $crud->save_answer();
+	if($save)
+		echo $save;
+}
 
 ob_end_flush();
 

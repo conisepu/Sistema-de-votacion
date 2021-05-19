@@ -7,8 +7,12 @@
   <link rel="stylesheet" href="assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <!-- <link rel="stylesheet" href="assets/dist/css/adminlte.min.css"> -->
-
-
+<!-- Toastr -->
+   <script src="assets/plugins/toastr/toastr.min.js"></script>
+   <!-- SweetAlert2 -->
+<script src="assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+   <!-- SweetAlert2 -->
+   <link rel="stylesheet" href="assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
 
 
@@ -16,11 +20,6 @@
 
 <script>
 	$(document).ready(function(){
-	  // $('.datetimepicker').datetimepicker({
-	  //     format:'Y/m/d H:i',
-	  //     startDate: '+3d'
-	  // })
-
 
   })
 	 window.start_load = function(){
@@ -83,6 +82,18 @@
 	     $('#confirm_modal #confirm').attr('onclick',$func+"("+$params.join(',')+")")
 	     $('#confirm_modal .modal-body').html($msg)
 	     $('#confirm_modal').modal('show')
+	  }
+	  var Toast = Swal.mixin({
+	      toast: true,
+	      position: 'top-end',
+	      showConfirmButton: false,
+	      timer: 5000
+	    });
+	  window.alert_toast= function($msg = 'TEST',$bg = 'success'){
+	      Toast.fire({
+	        icon: $bg,
+	        title: $msg
+	      })
 	  }
 
 </script>
