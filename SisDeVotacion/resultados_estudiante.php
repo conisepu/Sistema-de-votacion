@@ -110,7 +110,7 @@
 
 
 
-<script  src="ajax.js"> </script>
+
 
 
 

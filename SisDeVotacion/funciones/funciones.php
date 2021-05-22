@@ -171,13 +171,21 @@ Class Action {
 	function save_answer(){
 		extract($_POST);
 		$idUser = 0 ;
-		$texto = "SELECT estado FROM estados WHERE id_votacion= $id_votacion and id_usuario= $idUser";
+		$fechaActual = date('Y-m-d'); 
+		$fechas = $this->db->query("SELECT  start_date, end_date FROM votacion WHERE id= $id_votacion");
 		$estado =  $this->db->query("SELECT estado FROM estados WHERE id_votacion= $id_votacion and id_usuario= $idUser");
 		while ($row = $estado->fetch_assoc()) {
 			$estadoUsuario=$row['estado'];
 		}
+		while ($raw = $fechas->fetch_assoc()) {
+			$start_date = $raw['start_date'];
+			$end_date=$raw['end_date'];
+		}
 		
-		if($estadoUsuario == '0') {
+		if ($fechaActual < $start_date  || $fechaActual > $end_date) {
+			return 0;
+		}
+		elseif($estadoUsuario == '0') {
 				foreach($qid as $k => $v){
 					//$qid[$k] es el id de la pregunta 
 					$data = " id_votacion=$id_votacion ";

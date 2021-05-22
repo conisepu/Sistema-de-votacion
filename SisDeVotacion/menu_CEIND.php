@@ -86,7 +86,7 @@
                 </div>
             </div>
         </div>
-<script  src="ajax.js"> </script>
+
 <script> 
 //CREA UNA NUEVA VOTACION
 $('#manage_survey').submit(function(e){
@@ -98,8 +98,9 @@ $('#manage_survey').submit(function(e){
         url:"todb.php?action=save_survey",
         method:"POST",
         data:$("#manage_survey").serialize(),  
-        success:function(resp)
-        {      if(resp == 1){
+        success:function(resp)    
+        {      
+            if(resp == 1){
                 alert_toast("Votacion creada.",'success')
                 setTimeout(function(){
                     location.replace('lista.php')
@@ -110,23 +111,6 @@ $('#manage_survey').submit(function(e){
     });
 })
 
-$('.delete_survey').click(function(){
-_conf("Esta seguro de continuar con esta operacion?","delete_survey",[$(this).attr('data-id')])
-})
-function delete_survey($id){
-    start_load()
-    $.ajax({
-        url:'todb.php?action=delete_survey',
-        method:'POST',
-        data:{id:$id},
-        success:function(resp){
-            console.log(resp);
-            setTimeout(function(){
-                location.reload()
-            },1500)
-        }
-    })
-}
 </script>
 <?php include 'footer.php' ?>
 </html>

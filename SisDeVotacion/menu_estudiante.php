@@ -83,6 +83,9 @@
                             $estadoUsuario =  $raw['estado'];
                         }
                     ?>
+                    <?php
+					echo($fechaActual);
+                    ?>
 					<tr>
                 
                     <!-- ACA EMPIEZA EL INICIO DEL IF  -->

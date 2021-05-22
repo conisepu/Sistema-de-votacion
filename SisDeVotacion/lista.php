@@ -166,7 +166,26 @@
   </div>
   <!-- /.content-wrapper -->
   <?php include 'footer.php' ?>
-<script  src="ajax.js"> </script>
+<script> 
+$('.delete_survey').click(function(){
+_conf("Esta seguro de continuar con esta operacion?","delete_survey",[$(this).attr('data-id')])
+})
+function delete_survey($id){
+    start_load()
+    $.ajax({
+        url:'todb.php?action=delete_survey',
+        method:'POST',
+        data:{id:$id},
+        success:function(resp){
+            console.log(resp);
+            setTimeout(function(){
+                location.reload()
+            },1500)
+        }
+    })
+}
+
+</script>
 
 
 
