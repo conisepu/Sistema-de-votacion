@@ -27,11 +27,11 @@ echo $Id_Usuario;
             </div>
             <ul class="nav-links">
                 <li>
-                    <a href="menu_estudiante.html">Votaciones</a>
+                    <a href="menu_estudiante.php">Votaciones</a>
                 </li>
 
                 <li>
-                    <a href="resultados_estudiante.html">Resultados</a>
+                    <a href="resultados_estudiante.php">Resultados</a>
                 </li>
 
                 <li>
