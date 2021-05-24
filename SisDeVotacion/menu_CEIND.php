@@ -1,3 +1,12 @@
+<?php
+    // session_start(); 
+    // $Id_Usuario=$_SESSION['ID'];
+ // contraseña = c1MYYHf_JV
+
+?>
+
+
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -55,6 +64,8 @@
                 <div class="linea3"></div>
             </div>
         </nav>
+
+
         <!-- ///////////////////////////////////////////////////////////////////////////////////// -->
         <div class="container p-5">
             <div class="card">
@@ -100,6 +111,7 @@ $('#manage_survey').submit(function(e){
         data:$("#manage_survey").serialize(),  
         success:function(resp)    
         {      
+            console.log(resp);
             if(resp == 1){
                 alert_toast("Votacion creada.",'success')
                 setTimeout(function(){

@@ -1,3 +1,11 @@
+<?php
+    session_start(); 
+	$Id_Usuario=$_SESSION['ID_Usuario'];
+?>
+<?php 
+echo $Id_Usuario;
+?>
+
 <?php include 'conexion/db.php' ?>
 <?php 
 $qry = $conn->query("SELECT * FROM votacion where id = ".$_GET['id'])->fetch_array();
@@ -60,15 +68,13 @@ foreach($qry as $k => $v){
 		<?php 
 		$fechaActual = date('Y-m-d'); 
 		$i = 0;
-		$idUser =0;
+		
 		$id_votacion= $id;
-		$estado = $conn->query("SELECT estado FROM estados WHERE id_votacion= $id_votacion and id_usuario= $idUser"); 
+		$estado = $conn->query("SELECT estado FROM estados WHERE id_votacion= $id_votacion and id_usuario= $Id_Usuario"); 
 		while ($raw = $estado->fetch_assoc()) {
 		   $estadoUsuario =  $raw['estado'];
 		}		
 		?>
-
-            
 
 <div class="container">
 
@@ -148,7 +154,7 @@ foreach($qry as $k => $v){
 	<!-- EN CASO QUE HAYA CONTESTADO LA PREGUNTA -->
 	<?php else: ?>
 		<div class = "mx-auto p-5">
-			<h3 ><b>Votacion realizada :)</b></h3>
+			<h3 ><b>Votacion realizada </b></h3>
 		</div>
     <?php endif; ?>
 

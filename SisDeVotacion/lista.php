@@ -64,13 +64,15 @@
 		<div class="container card-body">
 			<table class="table tabe-hover table-bordered" id="list">
 				<colgroup>
+          <col width="5%">
 					<col width="5%">
 					<col width="20%">
 					<col width="5%">
 				</colgroup>
 				<thead>
 					<tr>
-            <th>Fecha de cierre</th>
+            <th>Inicio</th>
+            <th>Fin</th>
 						<th>Titulo </th>						
 						<th>Acciones</th>
 					</tr>
@@ -81,6 +83,7 @@
 					while($row= $qry->fetch_assoc()):
 					?>
 					<tr>
+            <td class="fecha"><b><?php echo date("M d, Y",strtotime($row['start_date'])) ?></b></td>
             <td class="fecha"><b><?php echo date("M d, Y",strtotime($row['end_date'])) ?></b></td>
 						<td class="titulo"><b><?php echo ucwords($row['title']) ?></b></td>
 						<td class="text-center">

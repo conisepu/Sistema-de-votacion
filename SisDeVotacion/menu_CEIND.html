@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Menu CEIND</title>
+        <link rel="stylesheet" href="css/estilos_menuCEIND.css">
+        
+    </head>
+    <body>
+        
+        <nav>
+            
+            <div class="logo_CEIND">
+                <img src="img/logo_CEIND.jpg" alt="logo_CEIND">
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="menu_CEIND.html">Votaciones</a>
+                </li>
+
+                <li>
+                    <a href="resultados_CEIND.html">Resultados</a>
+                </li>
+
+                <li>
+                    <a href="#">Listas</a> 
+                    <ul>
+                        <li><a href="Listas_Alumnos.html">Listas Alumnos</a></li>
+                        <li><a href="#">Listas Profesores</a></li>
+                        <li><a href="#">Listas Administracion</a></li>
+                    </ul>
+               </li>
+
+                <li>
+                    <a href="#">Tricel</a> 
+               </li>
+
+
+                <li>                    
+                    <a href="#">
+                        <img src="img/logo_CEIND.jpg" alt="imgPerfil">
+                         Administrador CEIND
+                    </a>
+                    <ul>
+                        <li><a href="#">Cambiar contraseña</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="burger">
+                <div class="linea1"></div>
+                <div class="linea2"></div>
+                <div class="linea3"></div>
+            </div>
+        </nav>
+
+        <div class="contenedor">
+            <a class="agregarVotaciones" href="#"><img  src="img/icon_plus.png" alt="icon_agregarVotaciones"></a>
+                       
+            <ul>
+                <li class="fecha">
+                   <a  href="#">dd/mm/aa</a>
+                </li>
+                <li class="titulo-votacion">
+                   <a href="#">centro de estudiantes</a>
+                   <img src="img/icon_candado_abierto.png" alt="icon_candado_abierto">
+                </li>  
+                <li class="Eliminar_votacion">
+                    <a  href="#"><img  src="img/trashCanClose_icon.png" alt="icon_eliminarVotaciones"></a>
+                </li>              
+            </ul>
+            <ul>
+                <li class="fecha">
+                   <a href="#">dd/mm/aa</a>
+                </li>
+                <li class="titulo-votacion">
+                   <a href="#">Votaciones 2</a>
+                   <img src="img/icon_candado_cerrado.png" alt="icon_candado_cerrado">
+                </li>   
+                <li class="Eliminar_votacion">
+                    <a  href="#"><img  src="img/trashCanClose_icon.png" alt="icon_eliminarVotaciones"></a>
+                </li>              
+             </ul>
+        </div>
+    
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/js_menuCEIND.js"></script>
+    </body>
+</html>
