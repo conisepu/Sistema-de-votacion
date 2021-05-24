@@ -190,7 +190,7 @@ Class Action {
 
 	function save_answer(){
 		extract($_POST);
-		$Id_Usuario=$_SESSION['ID'];
+		$Id_Usuario=$_SESSION['ID_Usuario'];
 		$fechaActual = date('Y-m-d'); 
 		$fechas = $this->db->query("SELECT  start_date, end_date FROM votacion WHERE id= $id_votacion");
 		$estado =  $this->db->query("SELECT estado FROM estados WHERE id_votacion= $id_votacion and id_usuario= $Id_Usuario");
