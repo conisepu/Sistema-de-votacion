@@ -33,7 +33,11 @@ if($action == "save_answer"){
 	if($save)
 		echo $save;
 }
-
+if($action == 'logout'){
+	$logout = $crud->logout();
+	if($logout)
+		echo $logout;
+}
 ob_end_flush();
 
 

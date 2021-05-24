@@ -14,8 +14,15 @@ Class Action {
 	    $this->db->close();
 	    ob_end_flush();
 	}
-
+	function logout(){
+		session_destroy();
+		foreach ($_SESSION as $key => $value) {
+			unset($_SESSION[$key]);
+		}
+		header("location:index.php");
+	}
 	function save_survey(){
+
 		extract($_POST);
 		$data = "";
 		foreach($_POST as $k => $v){
@@ -32,8 +39,21 @@ Class Action {
 			$save = $this->db->query("INSERT INTO votacion set $data");
 			//se obtiene el id de $save 
 			$idV = mysqli_insert_id($this->db);
-			$estadoInicial = "id_votacion=$idV";
-			$estado = $this->db->query("INSERT INTO estados set $estadoInicial");
+
+			//se crea las referencias entre las encuestas y usuarios
+
+			//se obtienes los id de los usuarios
+			$IDS = $this->db->query("SELECT ID FROM usuarios;");
+			while ($row = $IDS->fetch_assoc()) {
+				$estadoInicial ="";
+				$id_usuario =$row['ID'];
+				$estadoInicial =" id_votacion=$idV ";
+				$estadoInicial .=",id_usuario=$id_usuario";
+				$estado = $this->db->query("INSERT INTO estados set $estadoInicial");
+				
+			}
+			
+			
 		}
 		else{
 			$save = $this->db->query("UPDATE votacion set $data WHERE id = $id");
@@ -170,10 +190,10 @@ Class Action {
 
 	function save_answer(){
 		extract($_POST);
-		$idUser = 0 ;
+		$Id_Usuario=$_SESSION['ID'];
 		$fechaActual = date('Y-m-d'); 
 		$fechas = $this->db->query("SELECT  start_date, end_date FROM votacion WHERE id= $id_votacion");
-		$estado =  $this->db->query("SELECT estado FROM estados WHERE id_votacion= $id_votacion and id_usuario= $idUser");
+		$estado =  $this->db->query("SELECT estado FROM estados WHERE id_votacion= $id_votacion and id_usuario= $Id_Usuario");
 		while ($row = $estado->fetch_assoc()) {
 			$estadoUsuario=$row['estado'];
 		}
@@ -205,8 +225,12 @@ Class Action {
 				
 			if(isset($save)){
 				//actualizar el estado de la pregunta 
+				
+				//$estado = "id_usuario=$Id_Usuario";
 				$estado = "estado=1";
-				$nuevoEstado = $this->db->query("UPDATE estados set $estado WHERE id_votacion = $id_votacion");
+				
+				$nuevoEstado = $this->db->query("UPDATE estados set $estado WHERE id_votacion = $id_votacion and id_usuario=$Id_Usuario");
+				$estado = "UPDATE estados set $estado WHERE id_votacion = $id_votacion";
 				return 1;
 			}
 		}

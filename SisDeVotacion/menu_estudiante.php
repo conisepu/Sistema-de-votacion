@@ -1,3 +1,12 @@
+<?php
+    session_start(); 
+    $Id_Usuario=$_SESSION['ID_Usuario'];
+?>
+<?php 
+echo $Id_Usuario;
+?>
+
+<?php include'conexion/db.php' ?>
 <html>
 <head>
         <meta charset="UTF-8">
@@ -30,14 +39,24 @@
                 </li>
 
                 <li>                
-                      
+                <?php
+
+                        //Usario
+                         $estado = $conn->query("SELECT mail FROM usuarios WHERE ID=$Id_Usuario"); 
+                         while ($raw = $estado->fetch_assoc()) {
+                            $mail =  $raw['mail'];
+                        }
+
+
+                ?>                    
                     <a href="#">
                         <img src="img/img_perfil.png" alt="imgPerfil">  
                         <b>ESTUDIANTE</b>
-                        <p>Francisca Ramirez</p>
+                        <p> <?php echo($mail); ?> </p>
                     </a>  
                     <ul>
                         <li><a href="#">Cambiar contraseña</a></li>
+                        <li><a href="todb.php?action=logout">Cerrar sesion</a></li>
                     </ul>
                 </li>
             </ul>
@@ -48,7 +67,6 @@
             </div>
         </nav>
 
-        <?php include'conexion/db.php' ?>
 <!-- LISTADO DE VOTACIONES -->
 <div class="col-lg-12">
 	<div class="card card-outline card-primary">
@@ -73,18 +91,14 @@
 				<tbody>
 					<?php
 					$qry = $conn->query("SELECT * FROM votacion order by date(start_date) asc,date(end_date) asc ");
-					$idUser =0;
                     $fechaActual = date('Y-m-d'); 
                     while($row= $qry->fetch_assoc()):
                         $idVotacion= $row['id'];
                         //estado de la votacion
-                         $estado = $conn->query("SELECT estado FROM estados WHERE id_votacion= $idVotacion and id_usuario= $idUser"); 
+                         $estado = $conn->query("SELECT estado FROM estados WHERE id_votacion= $idVotacion and id_usuario= $Id_Usuario"); 
                          while ($raw = $estado->fetch_assoc()) {
                             $estadoUsuario =  $raw['estado'];
                         }
-                    ?>
-                    <?php
-					echo($fechaActual);
                     ?>
 					<tr>
                 
@@ -108,6 +122,8 @@
        
 	</div>
 </div>
+
+
 
 <!-- FIN LISTADO DE VOTACIONES -->
 
