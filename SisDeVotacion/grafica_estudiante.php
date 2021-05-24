@@ -56,6 +56,10 @@
         <?php
             $var=$_GET['id'];
 	        $qry = $conn->query("SELECT * FROM votacion WHERE id=$var order by date(start_date) asc,date(end_date) asc ");
+            $CantVotantes = $conn->query("SELECT COUNT(*) FROM estados WHERE id_votacion=$var and estado=1");
+            while ($row = $CantVotantes->fetch_assoc()) {
+                $votantes=$row['COUNT(*)'];
+            }
             while($row= $qry->fetch_assoc()):
 
 	    ?>
@@ -71,7 +75,7 @@
                 <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
                     <div class="card-header">Votantes</div>
                     <div class="card-body">
-                        <h5 class="card-title">239</h5>
+                        <h5 class="card-title"><?php echo $votantes ?></h5>
                         </div>
                 </div>
                 <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
