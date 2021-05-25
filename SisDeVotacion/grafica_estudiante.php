@@ -38,10 +38,17 @@
 
                 <li>                
                       
+                <?php
+                    //Usario
+                    $estado = $conn->query("SELECT mail FROM usuarios WHERE ID=$Id_Usuario"); 
+                    while ($raw = $estado->fetch_assoc()) {
+                        $mail =  $raw['mail'];
+                    }
+                ?>                     
                     <a href="#">
                         <img src="img/img_perfil.png" alt="imgPerfil">  
                         <b>ESTUDIANTE</b>
-                        <p>Francisca Ramirez</p>
+                        <p><?php echo($mail); ?></p>
                     </a>  
                     <ul>
                         <li><a href="#">Cambiar contraseña</a></li>
@@ -57,6 +64,7 @@
             $var=$_GET['id'];
 	        $qry = $conn->query("SELECT * FROM votacion WHERE id=$var order by date(start_date) asc,date(end_date) asc ");
             $CantVotantes = $conn->query("SELECT COUNT(*) FROM estados WHERE id_votacion=$var and estado=1");
+
             while ($row = $CantVotantes->fetch_assoc()) {
                 $votantes=$row['COUNT(*)'];
             }
@@ -76,12 +84,6 @@
                     <div class="card-header">Votantes</div>
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $votantes ?></h5>
-                        </div>
-                </div>
-                <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Candidatos</div>
-                    <div class="card-body">
-                        <h5 class="card-title">4</h5>
                         </div>
                 </div>
                 <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">

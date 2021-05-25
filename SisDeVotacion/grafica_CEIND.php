@@ -75,6 +75,11 @@
             while($row= $qry->fetch_assoc()):
 
 	    ?>
+            <div class="row my-3">
+                <div class="col-md-12 text-center">
+                    <h2> <?php echo ucwords($row['title']) ?> <h2>
+                </div>
+            </div>        
 
             <div class="row">
                 <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
@@ -91,12 +96,6 @@
                         </div>
                 </div>
                 <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Candidatos</div>
-                    <div class="card-body">
-                        <h5 class="card-title">4</h5>
-                        </div>
-                </div>
-                <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
                     <div class="card-header">Universo</div>
                     <div class="card-body">
                         <h5 class="card-title">45%</h5>
@@ -106,7 +105,7 @@
 
             <div class="row my-3">
                 <div class="col-md-12 text-center">
-                    <h2> <?php echo ucwords($row['title']) ?> <h2>
+                    <h2> Pregunta 1  <h2>
                     <canvas id="MiGrafica" width="400" height="300"></canvas>
                 </div>
             </div>

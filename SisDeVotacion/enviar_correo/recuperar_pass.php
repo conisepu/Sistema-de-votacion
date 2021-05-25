@@ -154,7 +154,7 @@ try {
     /*$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';*/
 
 	$mail->send();
-	header('Location: ../index.php');
+	//header('Location: ../index.php');
     /*echo 'El mensaje se envió correctamente';*/
 } catch (Exception $e) {
     echo "El mensaje no se envió. Mailer Error: {$mail->ErrorInfo}";

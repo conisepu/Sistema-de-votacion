@@ -27,7 +27,7 @@ if (isset($_POST['register'])) {
 				
 				
 				if ($resultado) {
-					header('Location: ../');
+					//header('Location: ../');
 					
 				} else {
 					?> 
