@@ -1,3 +1,8 @@
+<?php
+    session_start(); 
+    $Id_Usuario=$_SESSION['ID_Usuario'];
+?>
+<?php include'conexion/db.php' ?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -68,7 +73,7 @@
 
 
 
-        <?php include'conexion/db.php' ?>
+
 <!-- LISTADO DE VOTACIONES -->
 <div class="col-lg-12">
 	<div class="card card-outline card-primary">

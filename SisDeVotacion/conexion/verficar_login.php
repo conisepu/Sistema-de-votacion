@@ -29,7 +29,7 @@ if (isset($_POST['login'])) {
                     if($filas>0){
                         $_SESSION['ID_Usuario']=$ID_Usuario;
                         if($correo=='ceind@mail.udp.cl'){
-                            header('Location: ../menu_CEIND.php');
+                            header('Location: ../lista.php');
                         }                        
                         else{
                             header('Location: ../menu_estudiante.php');

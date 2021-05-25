@@ -30,7 +30,7 @@
                 </li>
 
                 <li>
-                    <a href="Listas_Alumnos.php">Listas alumnos</a> 
+                    <a href="#">Listas alumnos</a> 
                    
                </li>
 
