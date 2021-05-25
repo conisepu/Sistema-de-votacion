@@ -2,9 +2,7 @@
     session_start(); 
     $Id_Usuario=$_SESSION['ID_Usuario'];
 ?>
-<?php 
-echo $Id_Usuario;
-?>
+
 
 <?php include'conexion/db.php' ?>
 <html>
