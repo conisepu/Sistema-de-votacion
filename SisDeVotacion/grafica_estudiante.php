@@ -1,3 +1,7 @@
+<?php
+    session_start(); 
+    $Id_Usuario=$_SESSION['ID_Usuario'];
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -71,6 +75,11 @@
             while($row= $qry->fetch_assoc()):
 
 	    ?>
+            <div class="row my-3">
+                <div class="col-md-12 text-center">
+                    <h2> <?php echo ucwords($row['title']) ?> <h2>
+                </div>
+            </div>             
 
             <div class="row">
                 <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
