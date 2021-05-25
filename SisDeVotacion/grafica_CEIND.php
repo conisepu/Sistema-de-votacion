@@ -49,6 +49,7 @@
                     </a>
                     <ul>
                         <li><a href="#">Cambiar contraseña</a></li>
+                        <li><a href="todb.php?action=logout">Cerrar sesion</a></li>
                     </ul>
                 </li>
             </ul>
@@ -128,7 +129,7 @@
                     
                 }
                 else{
-                    $votos[]=2;
+                    $votos[]=0;
                 }
             endforeach; 
 	    

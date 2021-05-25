@@ -31,7 +31,7 @@
                 </li>
 
                 <li>
-                    <a href="resultados_CEIND.html">Resultados</a>
+                    <a href="resultados_CEIND.php">Resultados</a>
                 </li>
 
                 <li>
@@ -55,6 +55,7 @@
                     </a>
                     <ul>
                         <li><a href="#">Cambiar contraseña</a></li>
+                        <li><a href="todb.php?action=logout">Cerrar sesion</a></li>
                     </ul>
                 </li>
             </ul>

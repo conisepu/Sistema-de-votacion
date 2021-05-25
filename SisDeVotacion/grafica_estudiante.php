@@ -29,7 +29,7 @@
             </div>
             <ul class="nav-links">
                 <li>
-                    <a href="menu_estudiante.html">Votaciones</a>
+                    <a href="menu_estudiante.php">Votaciones</a>
                 </li>
 
                 <li>
@@ -37,7 +37,7 @@
                 </li>
 
                 <li>
-                    <a href="admin_CEIND.html">Contacto</a>
+                    <a href="#">Contacto</a>
                 </li>
 
                 <li>                
@@ -56,6 +56,7 @@
                     </a>  
                     <ul>
                         <li><a href="#">Cambiar contraseña</a></li>
+                        <li><a href="todb.php?action=logout">Cerrar sesion</a></li>
                     </ul>
                 </li>
             </ul>
@@ -68,7 +69,6 @@
             $var=$_GET['id'];
 	        $qry = $conn->query("SELECT * FROM votacion WHERE id=$var order by date(start_date) asc,date(end_date) asc ");
             $CantVotantes = $conn->query("SELECT COUNT(*) FROM estados WHERE id_votacion=$var and estado=1");
-
             while ($row = $CantVotantes->fetch_assoc()) {
                 $votantes=$row['COUNT(*)'];
             }
@@ -79,7 +79,7 @@
                 <div class="col-md-12 text-center">
                     <h2> <?php echo ucwords($row['title']) ?> <h2>
                 </div>
-            </div>             
+            </div>        
 
             <div class="row">
                 <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
@@ -92,7 +92,7 @@
                 <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
                     <div class="card-header">Votantes</div>
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $votantes ?></h5>
+                        <h5 class="card-title"> <?php echo $votantes ?> </h5>
                         </div>
                 </div>
                 <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
@@ -102,19 +102,78 @@
                         </div>
                 </div>
             </div>
+        <?php
+            
+	        $preguntas = $conn->query("SELECT * FROM preguntas WHERE id_votacion=$var");
+            while($raw= $preguntas->fetch_assoc()):
 
+	    ?>
+        <?php
+            $data = array(); // Array donde vamos a guardar los datos
+            $id_pregunta=$raw['id_pregunta'];
+	        $opciones = $conn->query(" SELECT nombre FROM opciones WHERE idVotacion=$var and idPregunta=$id_pregunta ");
+            while($rew= $opciones->fetch_assoc()):
+                $data[]=$rew['nombre']; // Guardar los resultados en la variable $data
+
+	    ?>
+        <?php endwhile; ?>
+        <?php
+            $votos = array(); // Array donde vamos a guardar los datos
+            foreach($data as $d):
+                $CountVotos = $conn->query(" SELECT COUNT(*) FROM respuestas WHERE id_votacion=$var and id_pregunta=$id_pregunta and respuesta='$d' ");
+                if($CountVotos){
+                    while($ruw= $CountVotos->fetch_assoc()):
+                        $votos[]=$ruw['COUNT(*)']; 
+                    endwhile;
+                    
+                }
+                else{
+                    $votos[]=0;
+                }
+            endforeach; 
+	    
+	    ?>
             <div class="row my-3">
                 <div class="col-md-12 text-center">
-                    <h2> <?php echo ucwords($row['title']) ?> <h2>
-                    <canvas id="MiGrafica" width="400" height="300"></canvas>
+                    <h2> <?php echo $raw['pregunta'] ?>  <h2>
+                    <canvas id="<?php echo $raw['id_pregunta'] ?>" width="200" height="150"></canvas>
                 </div>
             </div>
+            <script src="js/js_resultado_estudiante.js"></script>
+            <script>
+                let grafica_<?php echo $raw['id_pregunta'] ?>=document.getElementById("<?php echo $raw['id_pregunta'] ?>").getContext("2d");
 
-            <div class="row my-3">
-                <div class="col-md-12 text-center">
-                    <div id="idContTabla"></div>
-                </div>
-            </div>
+                var chart = new Chart(grafica_<?php echo $raw['id_pregunta'] ?>,{
+                    type:"bar",
+                    data:{
+                        labels:[        
+                            <?php foreach($data as $d):?>
+                            "<?php echo $d?>", 
+                            <?php endforeach; ?>
+                            ],
+                        datasets:[
+                            {
+                                label:"Cantidad de votos",
+                                backgroundColor:"rgb(62, 185, 193)",
+                                data:[
+                                    <?php foreach($votos as $v):?>
+                                    <?php echo $v;?>, 
+                                    <?php endforeach; ?>
+                                ]
+
+                            }
+                        ]
+                    }
+
+                
+                })
+
+
+            </script>
+
+
+
+            <?php endwhile; ?>
         <?php endwhile; ?>
 
 
@@ -127,27 +186,8 @@
 
         
         
-        <script src="js/js_resultado_estudiante.js"></script>
-        <script>
-            let miCanvas=document.getElementById("MiGrafica").getContext("2d");
 
-            var chart = new Chart(miCanvas,{
-                type:"bar",
-                data:{
-                    labels:["Fernanda Montes","Bastian Sanchez","Eduardo Carrasco","Pedro Saez"],
-                    datasets:[
-                        {
-                            label:"% de Votos",
-                            backgroundColor:"rgb(62, 185, 193)",
-                            data:[14,60,6,20]
 
-                        }
-                    ]
-                }
-
-            
-            })
-        </script>
         
     </body>
 </html>
