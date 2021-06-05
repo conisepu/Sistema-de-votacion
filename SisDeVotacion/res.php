@@ -1,9 +1,5 @@
 <?php
-    session_start(); 
-	$Id_Usuario=$_SESSION['ID_Usuario'];
-?>
-<?php 
-echo $Id_Usuario;
+  include 'funciones/rol_estudiante.php'
 ?>
 
 <?php include 'conexion/db.php' ?>

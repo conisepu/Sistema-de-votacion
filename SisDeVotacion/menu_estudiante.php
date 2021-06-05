@@ -1,12 +1,9 @@
 <?php
-    session_start(); 
-    $Id_Usuario=$_SESSION['ID_Usuario'];
+  include 'funciones/rol_estudiante.php'
 ?>
-
-
-<?php include'conexion/db.php' ?>
+<?php include 'conexion/db.php' ?>
 <html>
-<head>
+    <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -33,7 +30,7 @@
                 </li>
 
                 <li>
-                     <a href="#">Contacto</a> 
+                     <a href="#">Contacto <?php echo($Id_Usuario); ?></a> 
                 </li>
 
                 <li>                

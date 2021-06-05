@@ -1,3 +1,6 @@
+<?php
+  include 'funciones/rol_CEIND.php'
+?>
 <html>
     <head>
         <meta charset="UTF-8">

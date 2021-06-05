@@ -1,3 +1,28 @@
+<?php
+    
+    session_start();
+
+    if(isset($_GET['cerrar_sesion'])){
+        session_unset(); 
+
+        // destroy the session 
+        session_destroy(); 
+    }
+    
+    if(isset($_SESSION['ID_Usuario'])){
+        switch($_SESSION['ID_Usuario']){
+            case 18:
+                header('location: lista.php');
+            break;
+
+            default:
+            header('location: menu_estudiante.php');
+            break;
+        }
+    }
+
+    
+?>
 <html>
     <head>
         <meta charset="UTF-8">

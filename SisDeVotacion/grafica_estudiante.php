@@ -1,6 +1,5 @@
 <?php
-    session_start(); 
-    $Id_Usuario=$_SESSION['ID_Usuario'];
+  include 'funciones/rol_estudiante.php'
 ?>
 <html>
     <head>

@@ -1,3 +1,7 @@
+<?php
+  include 'funciones/rol_CEIND.php'
+?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -25,7 +29,7 @@
                 </li>
 
                 <li>
-                    <a href="#">Listas alumnos</a> 
+                    <a href="lista_alumnos.php">Listas alumnos</a> 
                     
                </li>
 

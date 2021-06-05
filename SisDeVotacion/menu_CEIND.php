@@ -1,10 +1,6 @@
 <?php
-    // session_start(); 
-    // $Id_Usuario=$_SESSION['ID'];
- // contraseña = c1MYYHf_JV
-
+  include 'funciones/rol_CEIND.php'
 ?>
-
 
 
 <html>
