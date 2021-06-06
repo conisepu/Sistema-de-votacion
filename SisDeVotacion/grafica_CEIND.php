@@ -107,12 +107,13 @@
                 </div>
             </div>
         <?php
-            
+            // PREGUNTAS 
 	        $preguntas = $conn->query("SELECT * FROM preguntas WHERE id_votacion=$var");
             while($raw= $preguntas->fetch_assoc()):
 
 	    ?>
         <?php
+            //DESPLIEGUE DE LAS OPCIONES 
             $data = array(); // Array donde vamos a guardar los datos
             $id_pregunta=$raw['id_pregunta'];
 	        $opciones = $conn->query(" SELECT nombre FROM opciones WHERE idVotacion=$var and idPregunta=$id_pregunta ");
@@ -122,28 +123,73 @@
 	    ?>
         <?php endwhile; ?>
         <?php
+            //CONTEO DE VOTOS SEGUN TIPO DE PREGUNTA 
+            if ($raw['type'] == 'radio_opt' ){
+
             $votos = array(); // Array donde vamos a guardar los datos
             foreach($data as $d):
-                $CountVotos = $conn->query(" SELECT COUNT(*) FROM respuestas WHERE id_votacion=$var and id_pregunta=$id_pregunta and respuesta='$d' ");
-                if($CountVotos){
-                    while($ruw= $CountVotos->fetch_assoc()):
-                        $votos[]=$ruw['COUNT(*)']; 
-                    endwhile;
-                    
-                }
-                else{
-                    $votos[]=0;
-                }
-            endforeach; 
-	    
+
+                
+                    $CountVotos = $conn->query(" SELECT COUNT(*) FROM respuestas WHERE id_votacion=$var and id_pregunta=$id_pregunta and respuesta='$d' ");
+
+                    if($CountVotos){
+                        while($ruw= $CountVotos->fetch_assoc()):
+                            $votos[]=$ruw['COUNT(*)']; 
+                        endwhile;
+                        
+                    }
+                    else{
+                        $votos[]=0;
+                    }
+                
+            endforeach;
+            }
+            elseif ($raw['type'] == 'check_opt') {
+
+                $ans = array();
+                $votos = array();
+                $CountVotos = $conn->query(" SELECT * FROM respuestas WHERE id_votacion=$var and id_pregunta=$id_pregunta  ");
+                while($ruw= $CountVotos->fetch_assoc()):
+                    foreach(explode(",", str_replace(array("[","]"), '', $ruw['respuesta'])) as $v){
+                        $ans[$ruw['id_pregunta']][$v][] = 1;
+                        }
+                endwhile;
+                foreach($data as $d):
+                    if ( isset($ans[$raw['id_pregunta']][$d]) ) {
+                        $votos[]= count($ans[$raw['id_pregunta']][$d]);
+                    }
+                    else{
+                        $votos[]=0;
+                    }
+                
+                endforeach;    
+
+            }
+            //RESPUESTAS DE LAS PREGUNTAS EN FORMATO TEXO 
+            else{
+
+                $ans = array();
+                $Respuestas = $conn->query(" SELECT * FROM respuestas WHERE id_votacion=$var and id_pregunta=$id_pregunta  ");
+                while($ruw= $Respuestas->fetch_assoc()):
+                    echo('aaaa');
+                    foreach(explode(",", str_replace(array("[","]"), '', $ruw['respuesta'])) as $v){
+                        $ans[$ruw['id_pregunta']][] = $ruw['respuesta'];
+                        }
+                endwhile;
+
+                
+            }
+        
 	    ?>
+
             <div class="row my-3">
                 <div class="col-md-12 text-center">
                     <h2> <?php echo $raw['pregunta'] ?>  <h2>
                     <canvas id="<?php echo $raw['id_pregunta'] ?>" width="200" height="150"></canvas>
                 </div>
             </div>
-            <script src="js/js_resultado_estudiante.js"></script>
+            
+            <?php if($raw['type'] != 'textfield_s'): ?>
             <script>
                 let grafica_<?php echo $raw['id_pregunta'] ?>=document.getElementById("<?php echo $raw['id_pregunta'] ?>").getContext("2d");
 
@@ -174,7 +220,16 @@
 
 
             </script>
+        <?php else: ?> 
+            <div  >
+				<?php if(isset($ans[$raw['id_pregunta']])): ?>
+				<?php foreach($ans[$raw['id_pregunta']] as $val): ?>
+				<blockquote class="text-dark"><?php echo $val ?></blockquote>
+				<?php endforeach; ?>
+				<?php endif; ?>
+			</div>
 
+        <?php endif ?>
 
 
             <?php endwhile; ?>
@@ -194,4 +249,5 @@
 
         
     </body>
+    <script src="js/js_resultado_estudiante.js"></script>
 </html>
