@@ -95,10 +95,11 @@
                             $estadoUsuario =  $raw['estado'];
                         }
                     ?>
+                    <?php if ($row['estado_votacion'] == '1'): ?>
 					<tr>
                 
                     <!-- ACA EMPIEZA EL INICIO DEL IF  -->
-                        <?php if ( $estadoUsuario == '0'  && $fechaActual >= $row['start_date']  && $fechaActual <= $row['end_date']): ?>
+                        <?php if ( $estadoUsuario == '0'  && $fechaActual >= $row['start_date']  && $fechaActual <= $row['end_date']  ): ?>
                             <td><b> <i class="fas fa-lock-open"></i></b></td>
                             <td><a href="res.php?page=answer_survey&id=<?php echo $row['id'] ?>" > <b><?php echo ucwords($row['title']) ?></b></a></td>
                         <?php else: ?>
@@ -109,7 +110,8 @@
 						<td><b><?php echo date("M d, Y",strtotime($row['start_date'])) ?></b></td>
 						<td><b><?php echo date("M d, Y",strtotime($row['end_date'])) ?></b></td>
                         
-					</tr>	
+					</tr>
+                    <?php endif ?>	
 				<?php endwhile; ?>
 				</tbody>
 			</table>

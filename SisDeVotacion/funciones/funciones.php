@@ -239,6 +239,40 @@ Class Action {
 		}
 	}
 
+	function votacion_estado(){
+		extract($_POST);
+		if(isset($estado_votacion)) {
+			$data = "estado_votacion=$estado_votacion";	
+		}
+		else {
+			$data= "estado_votacion=0";
+		}
+
+		$update = $this->db->query("UPDATE votacion set $data WHERE id = $id ");
+
+		if($update) {
+			return 1;
+		}
+		
+		}
+
+		function grafico_estado(){
+			extract($_POST);
+			if(isset($estado_grafico)) {
+				$data = "estado_grafico=$estado_grafico";	
+			}
+			else {
+				$data= "estado_grafico=0";
+			}
+	
+			$update = $this->db->query("UPDATE votacion set $data WHERE id = $id ");
+
+			if($update) {
+				return 1;
+			}
+			return $data;
+			
+			}
 
 
 }

@@ -19,7 +19,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="main.js"></script>
+        <script src="js/main.js"></script>
 
         <nav>
             
@@ -85,25 +85,45 @@
                 </div>
             </div>        
 
-            <div class="row">
-                <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
+            <div class="row  d-flex justify-content-around ">
+                <div class="card  mb-3" style="max-width: 18rem;">
                     <div class="card-header">Fecha</div>
                     <div class="card-body">
                         <h5 class="card-title"> <?php echo date("M d, Y",strtotime($row['end_date'])) ?> </h5>
                     </div>
                 </div>
 
-                <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
+                <div class="card  mb-3" style="max-width: 18rem;">
                     <div class="card-header">Votantes</div>
                     <div class="card-body">
                         <h5 class="card-title"> <?php echo $votantes ?> </h5>
                         </div>
                 </div>
-                <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
+                <div class="card  mb-3" style="max-width: 18rem;">
                     <div class="card-header">Universo</div>
                     <div class="card-body">
                         <h5 class="card-title">45%</h5>
                         </div>
+                </div>
+                <div class="card mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Universo</div>
+                    <div class="card-body">
+                         <?php echo($row['estado_grafico']); ?>
+                        <form id="toggleBox">
+                                <div class="toggle">
+                                <input type="hidden" name="id" value="<?php echo $var ?>">
+                                <?php if ($row['estado_grafico'] == 0 ): ?>
+                                <input type="checkbox"  name="estado_grafico"  value="1" >
+                                <?php else: ?>
+                                <input type="checkbox"  name="estado_grafico"  value= "1" checked >
+                                <label for="" class="onbtn">V</label>
+                                <?php endif ?>
+                                </div>
+
+                                <button class="btn btn-sm btn-flat bg-gradient-primary mx-1" form="toggleBox">Guardar</button>
+                        </form>
+
+                    </div>
                 </div>
             </div>
         <?php
@@ -171,7 +191,6 @@
                 $ans = array();
                 $Respuestas = $conn->query(" SELECT * FROM respuestas WHERE id_votacion=$var and id_pregunta=$id_pregunta  ");
                 while($ruw= $Respuestas->fetch_assoc()):
-                    echo('aaaa');
                     foreach(explode(",", str_replace(array("[","]"), '', $ruw['respuesta'])) as $v){
                         $ans[$ruw['id_pregunta']][] = $ruw['respuesta'];
                         }
@@ -183,13 +202,25 @@
 	    ?>
 
             <div class="row my-3">
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 text-center  ">
                     <h2> <?php echo $raw['pregunta'] ?>  <h2>
-                    <canvas id="<?php echo $raw['id_pregunta'] ?>" width="200" height="150"></canvas>
+                    <?php if($raw['type'] != 'textfield_s'): ?>
+                    <canvas id="<?php echo $raw['id_pregunta'] ?>" width="550" height="450" class ="mx-auto"></canvas>
+                    <?php else: ?> 
+                    <div class="row " >
+                        <div clas = "col-md-12 mx-auto"  >  
+                        <?php if(isset($ans[$raw['id_pregunta']])): ?>
+                        <?php foreach($ans[$raw['id_pregunta']] as $val): ?>
+                        <blockquote class="text-center"><?php echo $val ?></blockquote>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
+                        </div>
+                    </div>
+                    <?php endif ?>
                 </div>
             </div>
             
-            <?php if($raw['type'] != 'textfield_s'): ?>
+            
             <script>
                 let grafica_<?php echo $raw['id_pregunta'] ?>=document.getElementById("<?php echo $raw['id_pregunta'] ?>").getContext("2d");
 
@@ -213,23 +244,18 @@
 
                             }
                         ]
-                    }
+                    },
+                    options: {
+                responsive: false
+            }
+
 
                 
                 })
 
 
             </script>
-        <?php else: ?> 
-            <div  >
-				<?php if(isset($ans[$raw['id_pregunta']])): ?>
-				<?php foreach($ans[$raw['id_pregunta']] as $val): ?>
-				<blockquote class="text-dark"><?php echo $val ?></blockquote>
-				<?php endforeach; ?>
-				<?php endif; ?>
-			</div>
 
-        <?php endif ?>
 
 
             <?php endwhile; ?>
@@ -240,14 +266,25 @@
         </div>
 
 
- 
-
-
-        
-        
-
-
         
     </body>
+    <script> 
+    	$('#toggleBox').submit(function(e){
+		e.preventDefault()
+    $.ajax({
+			url:'todb.php?action=grafico_estado',
+			method:'POST',
+			data:$(this).serialize(),
+			success:function(resp){
+				console.log(resp);
+                if(resp == 1){
+                    setTimeout(function(){
+                        location.reload();
+                    },1000)
+                 }
+			}
+		})
+	})
+    </script>
     <script src="js/js_resultado_estudiante.js"></script>
 </html>

@@ -1,6 +1,7 @@
 <?php
   include 'funciones/rol_estudiante.php'
 ?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -63,6 +64,12 @@
         </nav>
 
 
+        
+
+
+
+        
+
         <div class="container">
         <?php
             $var=$_GET['id'];
@@ -74,40 +81,43 @@
             while($row= $qry->fetch_assoc()):
 
 	    ?>
+        <?php if ($row['estado_grafico'] == '1'): ?>
             <div class="row my-3">
                 <div class="col-md-12 text-center">
                     <h2> <?php echo ucwords($row['title']) ?> <h2>
                 </div>
             </div>        
 
-            <div class="row">
-                <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
+            <div class="row  d-flex justify-content-evenly ">
+                <div class="card  mb-3" style="max-width: 18rem;">
                     <div class="card-header">Fecha</div>
                     <div class="card-body">
                         <h5 class="card-title"> <?php echo date("M d, Y",strtotime($row['end_date'])) ?> </h5>
                     </div>
                 </div>
 
-                <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
+                <div class="card  mb-3" style="max-width: 18rem;">
                     <div class="card-header">Votantes</div>
                     <div class="card-body">
                         <h5 class="card-title"> <?php echo $votantes ?> </h5>
                         </div>
                 </div>
-                <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
+                <div class="card  mb-3" style="max-width: 18rem;">
                     <div class="card-header">Universo</div>
                     <div class="card-body">
                         <h5 class="card-title">45%</h5>
                         </div>
                 </div>
+
             </div>
         <?php
-            
+            // PREGUNTAS 
 	        $preguntas = $conn->query("SELECT * FROM preguntas WHERE id_votacion=$var");
             while($raw= $preguntas->fetch_assoc()):
 
 	    ?>
         <?php
+            //DESPLIEGUE DE LAS OPCIONES 
             $data = array(); // Array donde vamos a guardar los datos
             $id_pregunta=$raw['id_pregunta'];
 	        $opciones = $conn->query(" SELECT nombre FROM opciones WHERE idVotacion=$var and idPregunta=$id_pregunta ");
@@ -117,28 +127,84 @@
 	    ?>
         <?php endwhile; ?>
         <?php
+            //CONTEO DE VOTOS SEGUN TIPO DE PREGUNTA 
+            if ($raw['type'] == 'radio_opt' ){
+
             $votos = array(); // Array donde vamos a guardar los datos
             foreach($data as $d):
-                $CountVotos = $conn->query(" SELECT COUNT(*) FROM respuestas WHERE id_votacion=$var and id_pregunta=$id_pregunta and respuesta='$d' ");
-                if($CountVotos){
-                    while($ruw= $CountVotos->fetch_assoc()):
-                        $votos[]=$ruw['COUNT(*)']; 
-                    endwhile;
-                    
-                }
-                else{
-                    $votos[]=0;
-                }
-            endforeach; 
-	    
+
+                
+                    $CountVotos = $conn->query(" SELECT COUNT(*) FROM respuestas WHERE id_votacion=$var and id_pregunta=$id_pregunta and respuesta='$d' ");
+
+                    if($CountVotos){
+                        while($ruw= $CountVotos->fetch_assoc()):
+                            $votos[]=$ruw['COUNT(*)']; 
+                        endwhile;
+                        
+                    }
+                    else{
+                        $votos[]=0;
+                    }
+                
+            endforeach;
+            }
+            elseif ($raw['type'] == 'check_opt') {
+
+                $ans = array();
+                $votos = array();
+                $CountVotos = $conn->query(" SELECT * FROM respuestas WHERE id_votacion=$var and id_pregunta=$id_pregunta  ");
+                while($ruw= $CountVotos->fetch_assoc()):
+                    foreach(explode(",", str_replace(array("[","]"), '', $ruw['respuesta'])) as $v){
+                        $ans[$ruw['id_pregunta']][$v][] = 1;
+                        }
+                endwhile;
+                foreach($data as $d):
+                    if ( isset($ans[$raw['id_pregunta']][$d]) ) {
+                        $votos[]= count($ans[$raw['id_pregunta']][$d]);
+                    }
+                    else{
+                        $votos[]=0;
+                    }
+                
+                endforeach;    
+
+            }
+            //RESPUESTAS DE LAS PREGUNTAS EN FORMATO TEXO 
+            else{
+
+                $ans = array();
+                $Respuestas = $conn->query(" SELECT * FROM respuestas WHERE id_votacion=$var and id_pregunta=$id_pregunta  ");
+                while($ruw= $Respuestas->fetch_assoc()):
+                    foreach(explode(",", str_replace(array("[","]"), '', $ruw['respuesta'])) as $v){
+                        $ans[$ruw['id_pregunta']][] = $ruw['respuesta'];
+                        }
+                endwhile;
+
+                
+            }
+        
 	    ?>
+
             <div class="row my-3">
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 text-center  ">
                     <h2> <?php echo $raw['pregunta'] ?>  <h2>
-                    <canvas id="<?php echo $raw['id_pregunta'] ?>" width="200" height="150"></canvas>
+                    <?php if($raw['type'] != 'textfield_s'): ?>
+                    <canvas id="<?php echo $raw['id_pregunta'] ?>" width="550" height="450" class ="mx-auto"></canvas>
+                    <?php else: ?> 
+                    <div class="row " >
+                        <div clas = "col-md-12 mx-auto"  >  
+                        <?php if(isset($ans[$raw['id_pregunta']])): ?>
+                        <?php foreach($ans[$raw['id_pregunta']] as $val): ?>
+                        <blockquote class="text-center"><?php echo $val ?></blockquote>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
+                        </div>
+                    </div>
+                    <?php endif ?>
                 </div>
             </div>
-            <script src="js/js_resultado_estudiante.js"></script>
+            
+            
             <script>
                 let grafica_<?php echo $raw['id_pregunta'] ?>=document.getElementById("<?php echo $raw['id_pregunta'] ?>").getContext("2d");
 
@@ -162,7 +228,11 @@
 
                             }
                         ]
-                    }
+                    },
+                    options: {
+                responsive: false
+            }
+
 
                 
                 })
@@ -173,10 +243,11 @@
 
 
             <?php endwhile; ?>
+            <?php endif ?>  
         <?php endwhile; ?>
 
 
-
+             
         </div>
 
 
@@ -189,4 +260,5 @@
 
         
     </body>
+    <script src="js/js_resultado_estudiante.js"></script>
 </html>

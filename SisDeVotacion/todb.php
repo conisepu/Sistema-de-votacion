@@ -38,6 +38,18 @@ if($action == 'logout'){
 	if($logout)
 		echo $logout;
 }
+
+if($action == 'votacion_estado'){
+	$update = $crud->votacion_estado();
+	if($update)
+		echo $update;
+}
+if($action == 'grafico_estado'){
+	$update = $crud->grafico_estado();
+	if($update)
+		echo $update;
+}
+
 ob_end_flush();
 
 

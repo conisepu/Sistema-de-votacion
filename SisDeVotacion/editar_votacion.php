@@ -8,6 +8,8 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Editar votacion</title>
         <link rel="stylesheet" href="css/estilos_editVotacion.css">
+        <!-- <link rel="stylesheet" href="css/boton.css"> -->
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 		    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
@@ -80,8 +82,25 @@ foreach($qry as $k => $v){
 						<p>Titulo: <b><?php echo $stitle ?></b></p>
 						<p>Fecha inicio: <b><?php echo date("M d, Y",strtotime($start_date)) ?></b></p>
 						<p>Fecha final: <b><?php echo date("M d, Y",strtotime($end_date)) ?></b></p>
+            <p>Estado : <?php echo $estado_votacion ?>
+            <form id="toggleBox">
+                <div class="toggle">
+                  <input type="hidden" name="id" value="<?php echo $id ?>">
+                  <?php if ($estado_votacion == 0 ): ?>
+                  <input type="checkbox"  name="estado_votacion"  value="1" >
+                  <?php else: ?>
+                  <input type="checkbox"  name="estado_votacion"  value= "1"checked >
+                  <label for="" class="onbtn">V</label>
+                  <?php endif ?>
+                </div>
 
+                <button class="btn btn-sm btn-flat bg-gradient-primary mx-1" form="toggleBox">Guardar</button>
+              </form>
+            </p>
+  
 					</div>
+          <!-- BOTON DE PUBLICACION -->
+
 					<hr class="border-primary">
 				</div>
 			</div>
@@ -251,6 +270,24 @@ function delete_question($id){
         }
     })
 }
+
+
+	$('#toggleBox').submit(function(e){
+		e.preventDefault()
+    $.ajax({
+			url:'todb.php?action=votacion_estado',
+			method:'POST',
+			data:$(this).serialize(),
+			success:function(resp){
+				console.log(resp);
+        if(resp == 1){
+                setTimeout(function(){
+                    location.reload();
+                },1000)
+            }
+			}
+		})
+	})
 
 
 </script>

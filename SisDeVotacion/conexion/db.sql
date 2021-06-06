@@ -60,3 +60,11 @@ CREATE TABLE `votaciones_db`.`estados` (
   `id_usuario` INT NOT NULL,
   `estado` TINYINT NOT NULL,
   PRIMARY KEY (`id_votacion`, `id_usuario`));
+
+
+-- AGREGAR UNA NUEVA COLUMNA A VOTACION CON SU ESTADO 
+ALTER TABLE `votaciones_db`.`votacion` 
+ADD COLUMN `estado_votacion` TINYINT NOT NULL AFTER `end_date`;
+
+ALTER TABLE `votaciones_db`.`votacion` 
+ADD COLUMN `estado_grafico` TINYINT NOT NULL AFTER `estado_votacion`;

@@ -101,7 +101,7 @@
 					$qry = $conn->query("SELECT * FROM votacion order by date(start_date) asc,date(end_date) asc ");
 					while($row= $qry->fetch_assoc()):
 					?>
-
+                    <?php if ($row['estado_grafico'] == '1'): ?>
 					<tr>
                         <td><b><?php echo date("M d, Y",strtotime($row['end_date'])) ?></b></td> 
 						<td>
@@ -113,6 +113,7 @@
                         
 
 					</tr>	
+                    <?php endif ?>
 				<?php endwhile; ?>
 				</tbody>
 			</table>
@@ -123,17 +124,6 @@
 <!-- FIN LISTADO DE VOTACIONES -->
 
 
-
-
-
-
-
-
-
-
-
-
-        
         
         <script src="js/js_resultado_estudiante.js"></script>
         
