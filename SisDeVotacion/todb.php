@@ -50,6 +50,13 @@ if($action == 'grafico_estado'){
 		echo $update;
 }
 
+if($action == "update_user"){
+	$update = $crud->update_user();
+	if($update)
+		echo $update;
+}
+
+
 ob_end_flush();
 
 

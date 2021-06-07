@@ -256,7 +256,7 @@ Class Action {
 		
 		}
 
-		function grafico_estado(){
+	function grafico_estado(){
 			extract($_POST);
 			if(isset($estado_grafico)) {
 				$data = "estado_grafico=$estado_grafico";	
@@ -273,6 +273,36 @@ Class Action {
 			return $data;
 			
 			}
+
+
+	function update_user(){
+			extract($_POST);
+			
+			if(empty($password)) {			
+				return 2;		
+			}
+			else {
+				$consulta_hash= $this->db->query("SELECT pass FROM usuarios WHERE ID=$id");
+				while ($row = $consulta_hash->fetch_assoc()) {
+					$hash_antiguo=$row['pass'];
+				}
+
+				//verifica que las contraseñas coincidan 
+				if(password_verify($password_antigua, $hash_antiguo)) {
+					$hash = password_hash($password, PASSWORD_BCRYPT);
+					$data = "pass = '$hash'";
+					$update = $this->db->query("UPDATE usuarios set $data WHERE ID=$id"); 
+					return 1;
+				}
+				else {
+					return 3;
+				}
+				
+
+			}
+
+
+		}
 
 
 }
