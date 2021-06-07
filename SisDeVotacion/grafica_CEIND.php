@@ -9,6 +9,7 @@
         <title>RESULTADOS GRAFICA CEIND</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <link rel="stylesheet" href="css/estilos_resultados_estudiante.css">
+        <link rel="stylesheet" href="css/boton.css">
         
     </head>
     <?php include'conexion/db.php' ?>
@@ -106,21 +107,22 @@
                         </div>
                 </div>
                 <div class="card mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Universo</div>
+                    <div class="card-header">Estado</div>
                     <div class="card-body">
-                         <?php echo($row['estado_grafico']); ?>
                         <form id="toggleBox">
                                 <div class="toggle">
-                                <input type="hidden" name="id" value="<?php echo $var ?>">
-                                <?php if ($row['estado_grafico'] == 0 ): ?>
-                                <input type="checkbox"  name="estado_grafico"  value="1" >
-                                <?php else: ?>
-                                <input type="checkbox"  name="estado_grafico"  value= "1" checked >
-                                <label for="" class="onbtn">V</label>
-                                <?php endif ?>
+                                    <input type="hidden" name="id" value="<?php echo $var ?>">
+                                    <?php if ($row['estado_grafico'] == 0 ): ?>
+                                    <input type="checkbox"  name="estado_grafico"  value="1" >
+                                    <?php else: ?>
+                                    <input type="checkbox"  name="estado_grafico"  value= "1" checked >
+                                    <?php endif ?>
+                                    <label for="" class="onbtn">Visible</label>
+                                    <label for="" class="ofbtn">Oculto</label>
                                 </div>
+                                    <button class="btn btn-sm btn-flat bg-gradient-primary mx-1" form="toggleBox">Guardar</button>
 
-                                <button class="btn btn-sm btn-flat bg-gradient-primary mx-1" form="toggleBox">Guardar</button>
+                                
                         </form>
 
                     </div>
