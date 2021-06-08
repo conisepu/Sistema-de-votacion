@@ -23,8 +23,13 @@
         <script src="main.js"></script>
 
         <?php include 'navEstudiante.php' ?>
+        <!-- VERIFICA SI EL ALUMNO PERTENECE A LA LISTA  -->
 
-        
+        <?php
+		$alumno_regular = $conn->query("SELECT RUT FROM alumnos_industrias INNER JOIN usuarios ON  alumnos_industrias.CorreoUDP =usuarios.mail WHERE usuarios.ID= $Id_Usuario");
+        $situacion_regular = $alumno_regular->fetch_assoc();  
+        ?>
+        <?php if ( isset($situacion_regular['RUT']) ): ?>
 
         <div class="container">
         <?php
@@ -201,6 +206,7 @@
             <?php endwhile; ?>
             <?php endif ?>  
         <?php endwhile; ?>
+        <?php endif ?>
 
 
              

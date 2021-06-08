@@ -39,6 +39,15 @@
 					</tr>
 				</thead>
 				<tbody>
+
+                    <!-- VERIFICA SI EL ALUMNO PERTENECE A LA LISTA  -->
+                    <?php
+					$alumno_regular = $conn->query("SELECT RUT FROM alumnos_industrias INNER JOIN usuarios ON  alumnos_industrias.CorreoUDP =usuarios.mail WHERE usuarios.ID= $Id_Usuario");
+                    $situacion_regular = $alumno_regular->fetch_assoc();  
+                    ?>
+
+                    <?php if ( isset($situacion_regular['RUT']) ): ?>
+                    
 					<?php
 					$qry = $conn->query("SELECT * FROM votacion order by date(start_date) asc,date(end_date) asc ");
                     $fechaActual = date('Y-m-d'); 
@@ -50,6 +59,8 @@
                             $estadoUsuario =  $raw['estado'];
                         }
                     ?>
+                    
+                    <!-- VERIFICA QUE LA VOTACION SEA VISIBLE  -->
                     <?php if ($row['estado_votacion'] == '1'): ?>
 					<tr>
                 
@@ -66,8 +77,9 @@
 						<td><b><?php echo date("M d, Y",strtotime($row['end_date'])) ?></b></td>
                         
 					</tr>
-                    <?php endif ?>	
-				<?php endwhile; ?>
+                        <?php endif ?>	
+                    <?php endwhile; ?>
+                <?php endif ?>
 				</tbody>
 			</table>
 		</div>

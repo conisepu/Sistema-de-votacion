@@ -48,7 +48,18 @@
 						<th>Titulo de la encuesta</th>
 					</tr>
 				</thead>
+				
+			<!-- VERIFICA SI EL ALUMNO PERTENECE A LA LISTA  -->
+
+			<?php
+			$alumno_regular = $conn->query("SELECT RUT FROM alumnos_industrias INNER JOIN usuarios ON  alumnos_industrias.CorreoUDP =usuarios.mail WHERE usuarios.ID= $Id_Usuario");
+			$situacion_regular = $alumno_regular->fetch_assoc();  
+			?>
+			<?php if ( isset($situacion_regular['RUT']) ): ?>
+
 				<tbody>
+
+        
 					<?php
 					$qry = $conn->query("SELECT * FROM votacion order by date(start_date) asc,date(end_date) asc ");
 					while($row= $qry->fetch_assoc()):
@@ -68,6 +79,7 @@
                     <?php endif ?>
 				<?php endwhile; ?>
 				</tbody>
+			<?php endif ?>
 			</table>
 		</div>
 	</div>

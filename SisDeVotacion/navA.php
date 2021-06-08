@@ -13,7 +13,7 @@
                 </li>
 
                 <li>
-                    <a href="#">Listas alumnos</a> 
+                    <a href="lista_alumnos.php">Listas alumnos</a> 
                    
                </li>
 

@@ -26,6 +26,14 @@ foreach($qry as $k => $v){
         
 	<?php include 'navEstudiante.php' ?>
 
+        <!-- VERIFICA SI EL ALUMNO PERTENECE A LA LISTA  -->
+        <?php
+		$alumno_regular = $conn->query("SELECT RUT FROM alumnos_industrias INNER JOIN usuarios ON  alumnos_industrias.CorreoUDP =usuarios.mail WHERE usuarios.ID= $Id_Usuario");
+        $situacion_regular = $alumno_regular->fetch_assoc();  
+        ?>
+
+        <?php if ( isset($situacion_regular['RUT']) ): ?>
+
 		<!-- VERIFICA SI LA ENCUESTA YA SE CONTESTO  -->
 		<?php 
 		$fechaActual = date('Y-m-d'); 
@@ -112,13 +120,14 @@ foreach($qry as $k => $v){
 	</div>
 
 	
-	
-	<!-- EN CASO QUE HAYA CONTESTADO LA PREGUNTA -->
-	<?php else: ?>
-		<div class = "mx-auto p-5">
-			<h3 ><b>Votacion realizada </b></h3>
-		</div>
-    <?php endif; ?>
+		<!-- EN CASO QUE HAYA CONTESTADO LA PREGUNTA -->
+		<?php else: ?>
+			<div class = "mx-auto p-5">
+				<h3 ><b>Votacion realizada </b></h3>
+			</div>
+		<?php endif; ?>
+
+	<?php endif ?>
 
 </div>
 <?php include 'footer.php' ?>
