@@ -54,7 +54,12 @@
                     while($row= $qry->fetch_assoc()):
                         $idVotacion= $row['id'];
                         //estado de la votacion
-                         $estado = $conn->query("SELECT estado FROM estados WHERE id_votacion= $idVotacion and id_usuario= $Id_Usuario"); 
+                        $correo = $conn->query("SELECT mail FROM usuarios WHERE  ID = $Id_Usuario");
+                        while ($r = $correo->fetch_assoc()) {
+                            $correo_Alumno=$r['mail'];
+                        }
+                        $estado =  $conn->query("SELECT estado FROM estados WHERE id_votacion= $idVotacion and correo_alumno= '$correo_Alumno'");
+                        //echo("SELECT estado FROM estados WHERE id_votacion= $idVotacion and correo_usuario= '$correo_Alumno'");
                          while ($raw = $estado->fetch_assoc()) {
                             $estadoUsuario =  $raw['estado'];
                         }

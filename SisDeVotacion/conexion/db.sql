@@ -68,3 +68,7 @@ ADD COLUMN `estado_votacion` TINYINT NOT NULL AFTER `end_date`;
 
 ALTER TABLE `votaciones_db`.`votacion` 
 ADD COLUMN `estado_grafico` TINYINT NOT NULL AFTER `estado_votacion`;
+
+ALTER TABLE `votaciones_db`.`estados` 
+CHANGE COLUMN `id_usuario` `correo_alumno` VARCHAR(100) NOT NULL ;
+

@@ -42,13 +42,13 @@ Class Action {
 
 			//se crea las referencias entre las encuestas y usuarios
 
-			//se obtienes los id de los usuarios
-			$IDS = $this->db->query("SELECT ID FROM usuarios;");
-			while ($row = $IDS->fetch_assoc()) {
+			//SE OBTIENEN LOS CORREOS DE LOS ALUMNOS HABILITADOS PARA VOTAR 
+			$correos = $this->db->query("SELECT CorreoUDP FROM sheet1;");
+			while ($row = $correos->fetch_assoc()) {
 				$estadoInicial ="";
-				$id_usuario =$row['ID'];
+				$correo_usuario =$row['CorreoUDP'];
 				$estadoInicial =" id_votacion=$idV ";
-				$estadoInicial .=",id_usuario=$id_usuario";
+				$estadoInicial .=",correo_alumno= '$correo_usuario'";
 				$estado = $this->db->query("INSERT INTO estados set $estadoInicial");
 				
 			}
@@ -193,9 +193,13 @@ Class Action {
 		$Id_Usuario=$_SESSION['ID_Usuario'];
 		$fechaActual = date('Y-m-d'); 
 		$fechas = $this->db->query("SELECT  start_date, end_date FROM votacion WHERE id= $id_votacion");
-		$estado =  $this->db->query("SELECT estado FROM estados WHERE id_votacion= $id_votacion and id_usuario= $Id_Usuario");
+		$correo = $this->db->query("SELECT mail FROM usuarios WHERE  ID = $Id_Usuario");
+		while ($r = $correo->fetch_assoc()) {
+			$correo_Alumno=$r['mail'];
+		}
+		$estado =  $this->db->query("SELECT estado FROM estados WHERE id_votacion= $id_votacion and correo_alumno= '$correo_Alumno'");
 		while ($row = $estado->fetch_assoc()) {
-			$estadoUsuario=$row['estado'];
+			$estadoUsuario=$row['estado'];       
 		}
 		while ($raw = $fechas->fetch_assoc()) {
 			$start_date = $raw['start_date'];
@@ -229,8 +233,8 @@ Class Action {
 				//$estado = "id_usuario=$Id_Usuario";
 				$estado = "estado=1";
 				
-				$nuevoEstado = $this->db->query("UPDATE estados set $estado WHERE id_votacion = $id_votacion and id_usuario=$Id_Usuario");
-				$estado = "UPDATE estados set $estado WHERE id_votacion = $id_votacion";
+				$nuevoEstado = $this->db->query("UPDATE estados set $estado  WHERE id_votacion= $id_votacion and correo_alumno= '$correo_Alumno'");
+				//$estado = "UPDATE estados set $estado WHERE id_votacion = $id_votacion";
 				return 1;
 			}
 		}

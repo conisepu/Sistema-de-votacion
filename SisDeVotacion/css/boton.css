@@ -40,7 +40,11 @@ input:checked[type="checkbox"]::before {
   display: inline;
 }
 
-label {
+
+
+.onbtn {
+  bottom: 10px;
+  left: 15px;
   position: absolute;
   color: #fff;
   font-weight: 600;
@@ -48,14 +52,14 @@ label {
   pointer-events: none;
 }
 
-.onbtn {
-  bottom: 10px;
-  left: 15px;
-}
-
 .ofbtn {
   bottom: 10px;
   right: 15px;
   color: #08171b;
+  position: absolute;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  pointer-events: none;
 }
 

@@ -40,7 +40,11 @@ foreach($qry as $k => $v){
 		$i = 0;
 		
 		$id_votacion= $id;
-		$estado = $conn->query("SELECT estado FROM estados WHERE id_votacion= $id_votacion and id_usuario= $Id_Usuario"); 
+		$correo = $conn->query("SELECT mail FROM usuarios WHERE  ID = $Id_Usuario");
+		while ($r = $correo->fetch_assoc()) {
+			$correo_Alumno=$r['mail'];
+		}
+		$estado = $conn->query("SELECT estado FROM estados WHERE id_votacion= $id_votacion and correo_alumno= '$correo_Alumno'"); 
 		while ($raw = $estado->fetch_assoc()) {
 		   $estadoUsuario =  $raw['estado'];
 		}		
@@ -111,8 +115,8 @@ foreach($qry as $k => $v){
 				</form>
 				<div class="card-footer border-top border-success">
 					<div class="d-flex w-100 justify-content-center">
-						<button class="btn btn-sm btn-flat bg-gradient-primary mx-1" form="manage-survey">Submit Answer</button>
-						<button class="btn btn-sm btn-flat bg-gradient-secondary mx-1" type="button" onclick="location.href = 'index.php?page=survey_widget'">Cancel</button>
+						<button class="btn btn-sm btn-flat bg-gradient-primary mx-1" form="manage-survey">Enviar respuesta</button>
+						<!-- <button class="btn btn-sm btn-flat bg-gradient-secondary mx-1" type="button" onclick="location.href = 'index.php?page=survey_widget'">Cancel</button> -->
 					</div>
 				</div>
 			</div>

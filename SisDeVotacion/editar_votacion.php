@@ -52,8 +52,8 @@ foreach($qry as $k => $v){
                   <?php else: ?>
                   <input type="checkbox"  name="estado_votacion"  value= "1"checked >
                   <?php endif ?>
-                  <label for="" class="onbtn">Visible</label>
-                  <label for="" class="ofbtn">Oculto</label>
+                  <label  for="" class="onbtn"> Visible</label>
+                  <label  for="" class="ofbtn"> Oculto</label>
                   
                 </div>
 
