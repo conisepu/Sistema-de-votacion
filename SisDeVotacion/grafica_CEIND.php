@@ -64,7 +64,18 @@
                 <div class="card  mb-3" style="max-width: 18rem;">
                     <div class="card-header">Universo</div>
                     <div class="card-body">
-                        <h5 class="card-title">45%</h5>
+                    <?php
+                            $EstudiantesTotales = $conn->query("SELECT * FROM sheet1 ");
+                            $Total=mysqli_num_rows($EstudiantesTotales);       
+                            if($EstudiantesTotales != '0'){
+                                $universo = round(($votantes*100)/$Total, 2);    
+                            }
+                            else{
+                                $universo = 0;
+                            }
+                                               
+                        ?>
+                        <h5 class="card-title"><?php echo($universo)?>%</h5>
                         </div>
                 </div>
                 <div class="card mb-3" style="max-width: 18rem;">
