@@ -1,7 +1,7 @@
 <?php
   include 'funciones/rol_estudiante.php'
 ?>
-<?php include 'conexion/db.php' ?>
+
 <html>
     <head>
         <meta charset="UTF-8">

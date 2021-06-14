@@ -90,7 +90,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id='confirm' onclick="">Continuar</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id = "cerrar">Cerrar</button>
       </div>
       </div>
     </div>
@@ -145,6 +145,11 @@ function delete_survey($id){
         url:'todb.php?action=delete_survey',
         method:'POST',
         data:{id:$id},
+        beforeSend: function () {
+          $('#confirm').prop("disabled", true);
+          $('#cerrar').prop("disabled", true);
+          
+        },
         success:function(resp){
             console.log(resp);
             setTimeout(function(){

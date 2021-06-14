@@ -115,7 +115,7 @@ foreach($qry as $k => $v){
 				</form>
 				<div class="card-footer border-top border-success">
 					<div class="d-flex w-100 justify-content-center">
-						<button class="btn btn-sm btn-flat bg-gradient-primary mx-1" form="manage-survey">Enviar respuesta</button>
+						<button class="btn btn-sm btn-flat bg-gradient-primary mx-1" form="manage-survey" id="enviar_respuesta">Enviar respuesta</button>
 						<!-- <button class="btn btn-sm btn-flat bg-gradient-secondary mx-1" type="button" onclick="location.href = 'index.php?page=survey_widget'">Cancel</button> -->
 					</div>
 				</div>
@@ -144,12 +144,21 @@ foreach($qry as $k => $v){
 			url:'todb.php?action=save_answer',
 			method:'POST',
 			data:$(this).serialize(),
+			beforeSend: function () {
+				$('#enviar_respuesta').prop("disabled", true);
+				$('body').attr('style', 'cursor:wait')
+				$('#manage-survey').css("opacity", ".5");
+        	}, 
 			success:function(resp){
 				console.log(resp);
 				if(resp == 1){
+					swal.fire({
+						title: "Respuesta enviada",
+						scrollbarPadding: false
+					})
 					setTimeout(function(){
 						location.href = 'menu_estudiante.php'
-					},2000)
+					},1500)
 				}
 				if(resp == 0 ){
 					swal.fire({

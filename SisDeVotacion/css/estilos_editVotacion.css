@@ -95,10 +95,7 @@ nav{
 .btn.new_question:hover{
     background-color: #547d85  !important;
 }
-/*////////////////////////  editar y eliminar pregunta ////////////////////////////////*/
-.dropdown-menu .dropdown-item{
-    background-color: black !important;
-}
+
 /*////////////////////////por si la pantalla se hace mas pequeña////////////////////////////////*/
 
 .burger {

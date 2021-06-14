@@ -88,9 +88,9 @@ foreach($qry as $k => $v){
 								<span class="dropleft float-right">
 									<a class="fa fa-ellipsis-v text-dark" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
 									<div class="dropdown-menu" style="">
-								        <a class="dropdown-item edit_question text-dark" href="javascript:void(0)" data-id="<?php echo $row['id_pregunta'] ?>"  >Editar</a>
+								        <a class="dropdown-item edit_question " href="javascript:void(0)" data-id="<?php echo $row['id_pregunta'] ?>"  >Editar</a>
 								        <div class="dropdown-divider"></div>
-								        <a id="informacion"class="dropdown-item delete_question text-dark" href="javascript:void(0)" data-id="<?php echo $row['id_pregunta'] ?>">Borrar</a>
+								        <a id="informacion"class="dropdown-item delete_question " href="javascript:void(0)" data-id="<?php echo $row['id_pregunta'] ?>">Borrar</a>
 								     </div>
 								</span>	
 							</div>
@@ -241,6 +241,10 @@ function delete_question($id){
 			url:'todb.php?action=votacion_estado',
 			method:'POST',
 			data:$(this).serialize(),
+      beforeSend: function () {
+        $('#submit').prop("disabled", true);
+        $('#manage-sort').css("opacity", ".5");
+      }, 
 			success:function(resp){
 				console.log(resp);
         if(resp == 1){

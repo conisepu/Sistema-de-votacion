@@ -44,8 +44,8 @@
                         </div>
                         <hr>
                         <div class="col-lg-12 text-right justify-content-center d-flex">
-                            <button   class="btn btn-primary mr-2">Guardar</button>
-                            <button class="btn btn-secondary" type="button" onclick="location.href = 'lista.php'">Cancelar</button>
+                            <button class="btn btn-primary mr-2" id="enviar_formulario" >Guardar</button>
+                            <button class="btn btn-secondary"  type="button" onclick="location.href = 'lista.php'">Cancelar</button>
                         </div>
                     </form>
                 </div>
@@ -62,12 +62,16 @@ $('#manage_survey').submit(function(e){
     $.ajax({
         url:"todb.php?action=save_survey",
         method:"POST",
-        data:$("#manage_survey").serialize(),  
+        data:$("#manage_survey").serialize(), 
+        beforeSend: function () {
+            $('#enviar_formulario').prop("disabled", true);
+            $('#manage_survey').css("opacity", ".5");
+        }, 
         success:function(resp)    
         {      
             console.log(resp);
             if(resp == 1){
-                alert_toast("Votacion creada.",'success')
+                
                 setTimeout(function(){
                     location.replace('lista.php')
                 },1500)
