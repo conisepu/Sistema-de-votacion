@@ -11,7 +11,10 @@
     
     if(isset($_SESSION['ID_Usuario'])){
         switch($_SESSION['ID_Usuario']){
-            case 18:
+            case 3:
+                header('location: lista.php');
+            break;
+            case 20:
                 header('location: lista.php');
             break;
 

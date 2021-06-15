@@ -14,25 +14,24 @@
                 </li>
 
                 <li>
-                     <a href="#">Contacto <?php echo($Id_Usuario); ?></a> 
+                     <a href="#">Contacto </a> 
                 </li>
 
                 <li>                
                 <?php
 
-                        //Usario
-                         $estado = $conn->query("SELECT mail FROM usuarios WHERE ID=$Id_Usuario"); 
-                         while ($raw = $estado->fetch_assoc()) {
-                            $mail =  $raw['mail'];
-                        }
-
-
+                    //Usario
+                    $estado = $conn->query("SELECT mail FROM usuarios WHERE ID=$Id_Usuario"); 
+                    while ($raw = $estado->fetch_assoc()) {
+                        $mail =  $raw['mail'];
+                    }
                 ?>                    
                     <a href="#">
                         <img src="img/img_perfil.png" alt="imgPerfil">  
                         <b>ESTUDIANTE</b>
                         <p> <?php echo($mail); ?> </p>
                     </a>  
+                    
                     <ul>
                         <li><a href="perfil.php">Cambiar contraseña</a></li>
                         <li><a href="todb.php?action=logout">Cerrar sesion</a></li>

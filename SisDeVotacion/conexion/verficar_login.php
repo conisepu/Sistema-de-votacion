@@ -8,6 +8,11 @@ if(isset($_SESSION['ID_Usuario'])){
             header('location: lista.php');
         break;
 
+        case 20:
+            header('location: lista.php');
+        break;
+
+
         default:
         header('location: menu_estudiante.php');
         break;
@@ -53,6 +58,11 @@ if (isset($_POST['login'])) {
                                 header('location: ../lista.php');
                                 break;
                             
+                            case 20: //ID del tricel
+                                echo "entro al tricel";
+                                header('location: ../lista.php');
+                                break; 
+
                             default:
                                 echo "entro al estuduante";
                                 header('location: ../menu_estudiante.php');

@@ -1,7 +1,7 @@
 <?php
   include 'funciones/rol_CEIND.php'
 ?>
-
+<?php include'conexion/db.php' ?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -17,7 +17,7 @@
     <?php include 'navA.php' ?>
 
 
-<?php include'conexion/db.php' ?>
+
 <!-- LISTADO DE VOTACIONES -->
 <div class="col-lg-12">
 	<div class="card card-outline card-primary">

@@ -1,6 +1,7 @@
 <?php
   include 'funciones/rol_CEIND.php'
 ?>
+<?php include'conexion/db.php' ?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -16,7 +17,6 @@
     <?php include 'navA.php' ?>
 
 
-<?php include'conexion/db.php' ?>
 <!-- LISTADO DE VOTACIONES -->
     <form action="#" method="POST" enctype="multipart/form-data">
         <input type="file" name="excel">
