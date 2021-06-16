@@ -32,7 +32,7 @@
 				</colgroup>
 				<thead>
 					<tr>
-                        <th>estado</th>
+                        <th>Estado</th>
 						<th>Titulo</th>
 						<th>Inicio</th>
 						<th>Fin</th>

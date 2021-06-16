@@ -26,6 +26,7 @@
                 <div class="card-body">
                     <form id="manage_survey">
                         <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
+                        <input type="hidden" name="id_admi" value="<?php echo($Id_Usuario)?>">
                         <div class="row">
                             <div class="col-md-8 mx-auto ">
                                 <div class="form-group">

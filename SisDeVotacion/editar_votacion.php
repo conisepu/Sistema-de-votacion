@@ -1,6 +1,7 @@
 <?php
   include 'funciones/rol_CEIND.php'
 ?>
+<?php include 'conexion/db.php' ?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -19,10 +20,14 @@
     <?php include 'navA.php' ?>
 
 
-
-
+<?php 
+$qry = $conn->query("SELECT id_admi FROM votacion where id = ".$_GET['id'])->fetch_array();
+foreach($qry as $k => $v){
+	$$k = $v;
+}
+?>
+<?php if ($id_admi == $Id_Usuario): ?>
 <!-- PANEL DE EDICION  -->
-<?php include 'conexion/db.php' ?>
 <?php 
 $qry = $conn->query("SELECT * FROM votacion where id = ".$_GET['id'])->fetch_array();
 foreach($qry as $k => $v){
@@ -31,7 +36,8 @@ foreach($qry as $k => $v){
 	$$k = $v;
 }
 ?>
-<div class=" container col-lg-12">
+
+  <div class=" container col-lg-12">
 	<div class="row">
 		<div class="col-md-4">
 			<div class="card card-outline card-primary">
@@ -43,7 +49,7 @@ foreach($qry as $k => $v){
 						<p>Titulo: <b><?php echo $stitle ?></b></p>
 						<p>Fecha inicio: <b><?php echo date("M d, Y",strtotime($start_date)) ?></b></p>
 						<p>Fecha final: <b><?php echo date("M d, Y",strtotime($end_date)) ?></b></p>
-            <p>Estado : <?php echo $estado_votacion ?>
+            <p>Estado : 
             <form id="toggleBox">
                 <div class="toggle">
                   <input type="hidden" name="id" value="<?php echo $id ?>">
@@ -135,6 +141,15 @@ foreach($qry as $k => $v){
 		</div>
 	</div>
 </div>
+
+
+<?php else: ?>
+
+<h2>Vista no valida</h2>
+
+<?php endif ?>
+
+
 
 
 <!-- modal preguntas -->

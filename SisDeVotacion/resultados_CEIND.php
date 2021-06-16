@@ -47,8 +47,10 @@
 					</tr>
 				</thead>
 				<tbody>
+
+				
 					<?php
-					$qry = $conn->query("SELECT * FROM votacion order by date(start_date) asc,date(end_date) asc ");
+					$qry = $conn->query("SELECT * FROM votacion WHERE id_admi = $Id_Usuario order by date(start_date) asc,date(end_date) asc ");
 					while($row= $qry->fetch_assoc()):
 					?>
 

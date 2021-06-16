@@ -27,7 +27,13 @@
 
 
 
-
+        <?php 
+            $qry = $conn->query("SELECT id_admi FROM votacion where id = ".$_GET['id'])->fetch_array();
+            foreach($qry as $k => $v){
+                $$k = $v;
+            }
+        ?>
+        <?php if ($id_admi == $Id_Usuario): ?>
 
 
         <div class="container">
@@ -238,6 +244,11 @@
 
 
         </div>
+        <?php else: ?>
+
+            <h2>Vista no valida</h2>
+
+        <?php endif ?>
 
 
         
