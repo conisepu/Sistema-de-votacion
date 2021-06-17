@@ -4,6 +4,7 @@ $action = $_GET['action'];
 include 'funciones/funciones.php';
 $crud = new Action();
 
+
 if($action == "save_survey"){
 	$save = $crud->save_survey();
 	if($save)

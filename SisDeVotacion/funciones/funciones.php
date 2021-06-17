@@ -35,14 +35,20 @@ Class Action {
 			}
 		}
 
+
+
 		if(empty($id)){
 			$save = $this->db->query("INSERT INTO votacion set $data");
+
+			$saveh = $this->db->query("INSERT INTO historial_votacion ( title, accion, usuario, FECHA_REGISTRO) VALUES ('$title', 'Creacion de votacion', CURRENT_USER,NOW()) ");
 			//se obtiene el id de $save 
 			$idV = mysqli_insert_id($this->db);
 
 			//se crea las referencias entre las encuestas y usuarios
 
 			//SE OBTIENEN LOS CORREOS DE LOS ALUMNOS HABILITADOS PARA VOTAR 
+
+
 			$correos = $this->db->query("SELECT CorreoUDP FROM sheet1;");
 			while ($row = $correos->fetch_assoc()) {
 				$estadoInicial ="";
@@ -50,13 +56,20 @@ Class Action {
 				$estadoInicial =" id_votacion=$idV ";
 				$estadoInicial .=",correo_alumno= '$correo_usuario'";
 				$estado = $this->db->query("INSERT INTO estados set $estadoInicial");
+
 				
 			}
 			
 			
 		}
 		else{
+			$titlemodify=$this->db->query("SELECT title FROM votacion where id = ".$id);
+			while ($row = $titlemodify->fetch_assoc()) {
+				$titlem=$row['title'];
+			}
+			$saveh = $this->db->query("INSERT INTO historial_votacion ( title, accion, usuario, FECHA_REGISTRO) VALUES ('$titlem', 'Edicion de votacion', CURRENT_USER,NOW()) ");
 			$save = $this->db->query("UPDATE votacion set $data WHERE id = $id");
+			
 
 		}	
 		if($save)
@@ -66,6 +79,11 @@ Class Action {
 
 	function delete_survey(){
 		extract($_POST);
+		$titledelete=$this->db->query("SELECT title FROM votacion where id = ".$id);
+		while ($row = $titledelete->fetch_assoc()) {
+			$titled=$row['title'];
+		}
+		$deleteh = $this->db->query("INSERT INTO historial_votacion ( title, accion, usuario, FECHA_REGISTRO) VALUES ('$titled', 'Eliminacion de votacion', CURRENT_USER,NOW()) ");
 		$delete = $this->db->query("DELETE FROM votacion where id = ".$id);
 		if($delete){
 			return 1;

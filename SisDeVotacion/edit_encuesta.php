@@ -1,6 +1,4 @@
-<?php
-  include 'funciones/rol_CEIND.php'
-?>
+
 <?php
 
     include 'conexion/db.php';

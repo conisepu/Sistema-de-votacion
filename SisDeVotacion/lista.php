@@ -140,6 +140,7 @@
 $('.delete_survey').click(function(){
 _conf("Esta seguro de continuar con esta operacion?","delete_survey",[$(this).attr('data-id')])
 })
+
 function delete_survey($id){
     start_load()
     $.ajax({
