@@ -16,6 +16,10 @@
                     <a href="lista_alumnos.php">Listas alumnos</a> 
                    
                </li>
+               <li>
+                    <a href="historial.php">Historial</a> 
+                   
+               </li>
 
 
 
@@ -38,7 +42,7 @@
                     </a>
 
                     <ul>
-                        <li><a href="#">Cambiar contraseña</a></li>
+                        <li><a href="perfil.php">Cambiar contraseña</a></li>
                         <li><a href="todb.php?action=logout">Cerrar sesion</a></li>
                     </ul>
                 </li>
