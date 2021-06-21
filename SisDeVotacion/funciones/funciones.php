@@ -39,17 +39,19 @@ Class Action {
 
 		if(empty($id)){
 			$save = $this->db->query("INSERT INTO votacion set $data");
+			$idV = mysqli_insert_id($this->db);
+
 
 			$saveh = $this->db->query("INSERT INTO historial_votacion ( title, accion, usuario, FECHA_REGISTRO) VALUES ('$title', 'Creacion de votacion', CURRENT_USER,NOW()) ");
 			//se obtiene el id de $save 
-			$idV = mysqli_insert_id($this->db);
+
 
 			//se crea las referencias entre las encuestas y usuarios
 
 			//SE OBTIENEN LOS CORREOS DE LOS ALUMNOS HABILITADOS PARA VOTAR 
 
 
-			$correos = $this->db->query("SELECT CorreoUDP FROM sheet1;");
+			$correos = $this->db->query("SELECT CorreoUDP FROM alumnos_industrias");
 			while ($row = $correos->fetch_assoc()) {
 				$estadoInicial ="";
 				$correo_usuario =$row['CorreoUDP'];

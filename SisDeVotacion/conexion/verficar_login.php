@@ -73,7 +73,7 @@ if (isset($_POST['login'])) {
                     }
             }else {
                 echo "contraseña incorrecta";
-                //header('Location:../index.php?fallo=true');
+                header('Location:../index.php?fallo=true');
             }
             
         }

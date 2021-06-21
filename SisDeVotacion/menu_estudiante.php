@@ -59,12 +59,13 @@
                             $correo_Alumno=$r['mail'];
                         }
                         $estado =  $conn->query("SELECT estado FROM estados WHERE id_votacion= $idVotacion and correo_alumno= '$correo_Alumno'");
+
                         //echo("SELECT estado FROM estados WHERE id_votacion= $idVotacion and correo_usuario= '$correo_Alumno'");
                          while ($raw = $estado->fetch_assoc()) {
                             $estadoUsuario =  $raw['estado'];
                         }
                     ?>
-                    
+                    <?php if (isset($estadoUsuario)): ?>
                     <!-- VERIFICA QUE LA VOTACION SEA VISIBLE  -->
                     <?php if ($row['estado_votacion'] == '1'): ?>
 					<tr>
@@ -82,6 +83,7 @@
 						<td><b><?php echo date("M d, Y",strtotime($row['end_date'])) ?></b></td>
                         
 					</tr>
+                    <?php endif; ?>
                         <?php endif ?>	
                     <?php endwhile; ?>
                 <?php endif ?>

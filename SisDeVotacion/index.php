@@ -56,7 +56,7 @@
                         }
                         else if(isset($_GET['fallo']) && $_GET['fallo'] == 'mail'){
                             ?>
-                                <div class="mensaje"><h4>Mail incorrecto</h4></div>
+                                <div class="mensaje"><h4>Este correo no esta permitido</h4></div>
                             <?php
                         }else if(isset($_GET['fallo']) && $_GET['fallo'] == 'usuario'){
                             ?>

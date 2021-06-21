@@ -71,7 +71,7 @@
                     <div class="card-header">Universo</div>
                     <div class="card-body">
                     <?php
-                            $EstudiantesTotales = $conn->query("SELECT * FROM sheet1 ");
+                            $EstudiantesTotales = $conn->query("SELECT * FROM alumnos_industrias ");
                             $Total=mysqli_num_rows($EstudiantesTotales);       
                             if($EstudiantesTotales != '0'){
                                 $universo = round(($votantes*100)/$Total, 2);    

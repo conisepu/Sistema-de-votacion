@@ -57,12 +57,20 @@
                         }
                         #var_dump($q);
                         if($i==0){
-                            $query="CREATE table ".$excel->sheetName($sheet)." (".rtrim($q,",").");";
+                            $delete="DROP table alumnos_industrias";
+                            if(mysqli_query($conn,$delete))
+                            {
+                                #var_dump(mysqli_query($conn,$query));
+                                echo "se borro la tabla";
+                            }
+
+                            $query="CREATE table alumnos_industrias (".rtrim($q,",").");";
                         }else{
-                            $query="INSERT INTO ".$excel->sheetName($sheet)." values (".rtrim($q,",").");";
+                            $query="INSERT INTO alumnos_industrias values (".rtrim($q,",").");";
                         }
-                        #echo $query;
+                        echo $query;
                         #var_dump($conn);
+
                         if(mysqli_query($conn,$query))
                         {
                             #var_dump(mysqli_query($conn,$query));
