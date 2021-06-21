@@ -31,10 +31,6 @@
 			<input type="hidden" name="id" value="<?php echo($Id_Usuario);?>">
 
 			<div class="form-group">
-				<label for="password_antigua">Ingresa tu actual contraseña</label>
-				<input type="password" name="password_antigua" id="password_antigua" class="form-control" >
-			</div>
-			<div class="form-group">
 				<label for="password">Nueva Contraseña</label>
 				<input type="password" name="password" id="password" class="form-control" >
 			</div>
@@ -72,7 +68,7 @@
 
 				}
 				else {
-					$('#msg').html('<div class="alert alert-danger">No se pudo validar contraseña</div>')
+					$('#msg').html('<div class="alert alert-danger">Error</div>')
 				}
 			}
 		})
