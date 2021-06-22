@@ -38,7 +38,7 @@
 				</thead>
 				<tbody>
 					<?php
-					$qry = $conn->query("SELECT * FROM historial_votacion");
+					$qry = $conn->query("SELECT * FROM historial_votacion where id_admin = $Id_Usuario order by FECHA_REGISTRO DESC");
 
 					while($row= $qry->fetch_assoc()):
 					?>

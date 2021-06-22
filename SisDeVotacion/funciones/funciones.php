@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("America/Santiago");
 session_start();
 ini_set('display_errors', 1);
 Class Action {
@@ -41,8 +42,10 @@ Class Action {
 			$save = $this->db->query("INSERT INTO votacion set $data");
 			$idV = mysqli_insert_id($this->db);
 
+			$fecha_hoy= date("Y-m-d H:i:s");
 
-			$saveh = $this->db->query("INSERT INTO historial_votacion ( title, accion, usuario, FECHA_REGISTRO) VALUES ('$title', 'Creacion de votacion', CURRENT_USER,NOW()) ");
+
+			$saveh = $this->db->query("INSERT INTO historial_votacion ( title, accion, usuario, FECHA_REGISTRO, id_admin) VALUES ('$title', 'Creacion de votacion', CURRENT_USER,'$fecha_hoy',$id_admi) ");
 			//se obtiene el id de $save 
 
 
@@ -65,11 +68,13 @@ Class Action {
 			
 		}
 		else{
-			$titlemodify=$this->db->query("SELECT title FROM votacion where id = ".$id);
+			$titlemodify=$this->db->query("SELECT title,id_admi FROM votacion where id = ".$id);
 			while ($row = $titlemodify->fetch_assoc()) {
 				$titlem=$row['title'];
+				$id_admi=$row['id_admi'];
 			}
-			$saveh = $this->db->query("INSERT INTO historial_votacion ( title, accion, usuario, FECHA_REGISTRO) VALUES ('$titlem', 'Edicion de votacion', CURRENT_USER,NOW()) ");
+			$fecha_hoy= date("Y-m-d H:i:s");
+			$saveh = $this->db->query("INSERT INTO historial_votacion ( title, accion, usuario, FECHA_REGISTRO, id_admin) VALUES ('$titlem', 'Edicion de votacion', CURRENT_USER,'$fecha_hoy',$id_admi) ");
 			$save = $this->db->query("UPDATE votacion set $data WHERE id = $id");
 			
 
@@ -81,11 +86,15 @@ Class Action {
 
 	function delete_survey(){
 		extract($_POST);
-		$titledelete=$this->db->query("SELECT title FROM votacion where id = ".$id);
+		$titledelete=$this->db->query("SELECT title,id_admi FROM votacion where id = ".$id);
 		while ($row = $titledelete->fetch_assoc()) {
 			$titled=$row['title'];
+			$id_admi=$row['id_admi'];
 		}
-		$deleteh = $this->db->query("INSERT INTO historial_votacion ( title, accion, usuario, FECHA_REGISTRO) VALUES ('$titled', 'Eliminacion de votacion', CURRENT_USER,NOW()) ");
+
+
+		$fecha_hoy= date("Y-m-d H:i:s");
+		$deleteh = $this->db->query("INSERT INTO historial_votacion ( title, accion, usuario, FECHA_REGISTRO, id_admin) VALUES ('$titled', 'Eliminacion de votacion', CURRENT_USER,'$fecha_hoy',$id_admi) ");
 		$delete = $this->db->query("DELETE FROM votacion where id = ".$id);
 		if($delete){
 			return 1;
