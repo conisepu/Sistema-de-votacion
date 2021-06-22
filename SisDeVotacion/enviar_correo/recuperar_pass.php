@@ -37,7 +37,7 @@ for( $i=1; $i<=$longitud; $i++) {
     $password.=$caracter;
     $listado = str_shuffle($listado);
     }
-echo $password; //contraseña provisoria
+//echo $password; //contraseña provisoria
 $hash = password_hash($password, PASSWORD_BCRYPT);
 $consulta = "UPDATE usuarios SET pass = '$hash' WHERE usuarios.mail='$email'"; 
 $resultado = mysqli_query($conn,$consulta);
@@ -154,7 +154,7 @@ try {
     /*$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';*/
 
 	$mail->send();
-	//header('Location: ../index.php');
+	header('Location: ../index.php');
     /*echo 'El mensaje se envió correctamente';*/
 } catch (Exception $e) {
     echo "El mensaje no se envió. Mailer Error: {$mail->ErrorInfo}";
