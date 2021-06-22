@@ -53,9 +53,7 @@ a{
     font-weight: bold;
     color:#3F97A7
 }
-.nav-links a p{
-    margin-left: 5vh;
-}
+
 .nav-links li ul{ /*modificacion de los despliegues*/
     display:none;
     position: absolute;
