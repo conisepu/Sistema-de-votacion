@@ -44,16 +44,43 @@
             #print_r($excel->sheetNames());
             for ($sheet=0; $sheet < sizeof($excel->sheetNames()) ; $sheet++) { 
                 $rowcol=$excel->dimension($sheet);
-                $cont=0;
+                
                 if($rowcol[0]!=1 && $rowcol[1]!=1){
                     $i=0;
+                    $contador = 0;
                     foreach ($excel->rows($sheet) as $key => $row) {
                         $q="";
-                        print_r($i);
+                        #var_dump($row);
                         foreach ($row as $key => $cell) {
-                             
+                            #print_r($contador);
                             if($i==0){
+
+                                $cell = strtolower($cell);                                
                                 $cell =str_replace(' ', '', $cell);
+                            
+                                echo "<br>";
+                                if($cell == "rut" or $cell == "nombreestudiante" or $cell == "añoingreso" or $cell == "sexo" or $cell == "correoudp" ){
+                                    if($cell == "rut"){
+                                        $cell = "RUT";
+                                    }
+                                    if($cell == "nombreestudiante"){
+                                        $cell = "NombreEstudiante";
+                                    }
+                                    if($cell == "añoingreso"){
+                                        $cell = "AñoIngreso";
+                                    }
+                                    if($cell == "sexo"){
+                                        $cell = "Sexo";
+                                    }
+                                    if($cell == "correoudp"){
+                                        $cell = "CorreoUDP";
+                                    }
+                                }else{
+                                    $contador +=1;
+                                    echo "<br>";
+                                    print_r("el parametro ". $cell ." esta mal escrito. " );
+                                    echo "<br>";
+                                }
                                 $q.=$cell. " varchar(50),";
                             }else{
                                 if(str_contains($cell, "'")){
@@ -64,31 +91,38 @@
                                                      
                             
                         }
-                        #var_dump($q);
-                        if($i==0){
-                            $delete="DROP table alumnos_industrias";
-                            if(mysqli_query($conn,$delete))
-                            {
-                                #var_dump(mysqli_query($conn,$query));
-                                echo "se borro la tabla";
+                        
+                        #print_r("CONTADOOOOOOOOOR".$contador);
+                        if($contador == 0){
+                            #var_dump($q);
+                            if($i==0){
+                                $delete="DROP table alumnos_industrias";
+                                if(mysqli_query($conn,$delete))
+                                {
+                                    #var_dump(mysqli_query($conn,$query));
+                                    echo "se borro la tabla";
+                                }
+
+                                $query="CREATE table alumnos_industrias (".rtrim($q,",").");";
+                            }else{
+                                $query="INSERT INTO alumnos_industrias values (".rtrim($q,",").");";
                             }
-
-                            $query="CREATE table alumnos_industrias (".rtrim($q,",").");";
+                            #echo $query;
+                            #var_dump($conn);
+                            
+                            if(mysqli_query($conn,$query)){
+                                #var_dump(mysqli_query($conn,$query));
+                                echo "funciono la insertacion del excel";
+                            }
+                            
                         }else{
-                            $query="INSERT INTO alumnos_industrias values (".rtrim($q,",").");";
-                        }
-                        echo $query;
-                        #var_dump($conn);
+                            echo "<p>No se inserto la tabla, ingrese el archivo excel correcto, corrigiendo lo mencionado anteriormente</p>";
 
-                        if(mysqli_query($conn,$query))
-                        {
-                            #var_dump(mysqli_query($conn,$query));
-                            echo "funciono la insertacion del excel";
-                        }
+                        }                        
                         echo "<br>";
                         $i++;
                     }
-                    $cont++;
+                    
                 }
             }
         }
