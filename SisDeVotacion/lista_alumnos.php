@@ -77,8 +77,7 @@
                                     }
                                 }else{
                                     $contador +=1;
-                                    echo "<br>";
-                                    print_r("el parametro ". $cell ." esta mal escrito. " );
+                                    print_r("El parametro ". $cell ." esta mal escrito. " );
                                     echo "<br>";
                                 }
                                 $q.=$cell. " varchar(50),";
@@ -91,8 +90,7 @@
                                                      
                             
                         }
-                        
-                        #print_r("CONTADOOOOOOOOOR".$contador);
+                        $cont = 0; //contador para ver si funciona la query de abajo
                         if($contador == 0){
                             #var_dump($q);
                             if($i==0){
@@ -100,7 +98,8 @@
                                 if(mysqli_query($conn,$delete))
                                 {
                                     #var_dump(mysqli_query($conn,$query));
-                                    echo "se borro la tabla";
+                                    echo "Se actualizó el excel";
+                                    echo "<br>";
                                 }
 
                                 $query="CREATE table alumnos_industrias (".rtrim($q,",").");";
@@ -109,20 +108,22 @@
                             }
                             #echo $query;
                             #var_dump($conn);
-                            
                             if(mysqli_query($conn,$query)){
-                                #var_dump(mysqli_query($conn,$query));
-                                echo "funciono la insertacion del excel";
+                                $cont = 1; // cuando funciona la query
+                                #var_dump(mysqli_query($conn,$query));                                
                             }
                             
                         }else{
-                            echo "<p>No se inserto la tabla, ingrese el archivo excel correcto, corrigiendo lo mencionado anteriormente</p>";
-
-                        }                        
-                        echo "<br>";
+                            $cont = 0; //cuando no funciona la insercion del excel                             
+                        }
                         $i++;
                     }
-                    
+
+                    if($cont == 1){
+                        print_r("Funciono la insertación del excel");
+                    }elseif($cont == 0){
+                        print_r("No funciono la insercion del excel, arregle los errores mencionados anteriormente");
+                    }
                 }
             }
         }
