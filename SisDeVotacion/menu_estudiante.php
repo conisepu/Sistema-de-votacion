@@ -23,9 +23,7 @@
 		<div class="container card-body">
 			<table class="table tabe-hover table-bordered" id="list">
 				<colgroup>
-					<col width="5%">
-					<col width="20%">
-					<col width="20%">
+					<col width="10%">
 					<col width="20%">
 					<col width="20%">
 					<col width="15%">

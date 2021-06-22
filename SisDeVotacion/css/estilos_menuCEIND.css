@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+
 body{
     top: 0px;
     left: 0px;
@@ -34,6 +35,7 @@ nav{
     display: flex; /*colocar links en columnas*/
     justify-content: space-around;
     width: 60%;
+    margin-top: 25px;
 }
 .nav-links li{
     list-style: none;
@@ -59,10 +61,10 @@ nav{
     min-height: auto;
     min-width: auto;
     padding: 5px 10px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border:1px solid #969696;
     transition: all .1s ease;
-
+    z-index: 999;
 }
 .nav-links li:hover > ul{
     display:block;
@@ -74,6 +76,7 @@ nav{
 }
 
 /*////////////////////////listas de votaciones ////////////////////////////////*/
+
 .card-header{
     background-color: rgba(100, 148, 237, 0.452) !important;
     width: 20%;
@@ -92,6 +95,7 @@ nav{
     font-weight: bold;
 }
 .table.tabe-hover.table-bordered{
+    margin-top: 30px;
     border-collapse: collapse;
     border-color: white;
     overflow: hidden;
