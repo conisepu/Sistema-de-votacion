@@ -55,20 +55,26 @@
 
             <div class="row  d-flex justify-content-around ">
                 <div class="card  mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Fecha</div>
+                    <div class="card-header">
+                    <h5 class="card-title">Fecha</h5>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title"> <?php echo date("M d, Y",strtotime($row['end_date'])) ?> </h5>
+                        <h4 class="card-title"> <?php echo date("M d, Y",strtotime($row['end_date'])) ?> </h4>
                     </div>
                 </div>
 
                 <div class="card  mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Votantes</div>
+                    <div class="card-header">
+                    <h5 class="card-title">Votantes</h5>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title"> <?php echo $votantes ?> </h5>
+                        <h4 class="card-title"> <?php echo $votantes ?> </h4>
                         </div>
                 </div>
                 <div class="card  mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Universo</div>
+                    <div class="card-header">
+                    <h5 class="card-title">Universo</h5>
+                    </div>
                     <div class="card-body">
                     <?php
                             $EstudiantesTotales = $conn->query("SELECT * FROM alumnos_industrias ");
@@ -81,11 +87,13 @@
                             }
                                                
                         ?>
-                        <h5 class="card-title"><?php echo($universo)?>%</h5>
+                        <h4 class="card-title"><?php echo($universo)?>%</h4>
                         </div>
                 </div>
                 <div class="card mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Estado</div>
+                    <div class="card-header">
+                    <h5 class="card-title">Estado</h5>
+                    </div>
                     <div class="card-body">
                         <form id="toggleBox">
                                 <div class="toggle">
