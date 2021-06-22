@@ -63,6 +63,7 @@ a{
     background-color: white;
     border:1px solid #969696;
     transition: all .1s ease;
+    z-index: 999;
 
 }
 .nav-links li:hover > ul{
@@ -112,7 +113,55 @@ a{
     float: right;
 }
 
+/*///////////////////////////////////////////////////////////////////////////////////////////77*/
+.table.tabe-hover.table-bordered{
+    margin-top: 30px;
+    border-collapse: collapse;
+    border-color: white;
+    overflow: hidden;
+    align-items:flex-end;
+}
+.table.tabe-hover.table-bordered thead tr{
+    background-color: #494949;
+    color: #ffffff;
+    margin-left: 10px;
+    text-align: left;
+    font:normal normal bold 16px/20px Roboto;
+    opacity: 1;
+}
+.table.tabe-hover.table-bordered th{
+    border-radius: 2em;
+}
+.table.tabe-hover.table-bordered td{
+    border:5px solid #ffffff;
+    border-radius: 2em;
+}
+.table.tabe-hover.table-bordered tbody tr{
+    background-color: #3f97a734;
+    color: black;
+    font-weight: bold;
+}
+.table.tabe-hover.table-bordered .fecha, 
+.table.tabe-hover.table-bordered .titulo{
+    padding: 5px;
+}
+.table.tabe-hover.table-bordered .titulo b{
+    align-items: center;
+    margin-left: 10px;
+    font:normal normal bold 16px/20px Roboto;
+    text-transform: uppercase;
+    opacity: 1;
+}
+.table.tabe-hover.table-bordered .fecha b{
+    margin-left: 10px;
+    font:normal normal normal 16px/20px Roboto;
+    opacity: 1;
 
+}
+.table.tabe-hover.table-bordered tbody tr:nth-of-type(even){
+    background-color: #3F97A7;
+    color: #FFFFFF;
+}
 
 
 /*////////////////////////por si la pantalla se hace mas pequeña////////////////////////////////*/
