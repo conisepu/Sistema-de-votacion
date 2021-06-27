@@ -59,10 +59,7 @@
 			success:function(resp){
 				console.log(resp);
 				if(resp ==1){
-					//alert_toast("Data successfully saved",'success')
-					setTimeout(function(){
-						location.reload()
-					},1000)
+					$('#msg').html('<div class="alert alert-success">Contraseña cambiada</div>')
 				}else if (resp == 2 ){
 					$('#msg').html('<div class="alert alert-danger">Ingrese contraseña</div>')
 
