@@ -44,7 +44,7 @@ li{
 }
 /*////////////////////////menu despegable////////////////////////////////*/
 .nav-links{
-    display: flex; /*colocar links en columnas*/
+    display: flex  !important; /*colocar links en columnas*/
     justify-content: space-around;
     width: 60%;
 }
@@ -135,7 +135,9 @@ li{
 .table.tabe-hover.table-bordered tbody tr{
     background-color: #6cb2be34;
     color: rgb(0, 0, 0);
+    transition: all .1s ease;
 }
+
 .table.tabe-hover.table-bordered tbody tr a{
     text-decoration: none;
     text-align: left center;
@@ -145,9 +147,9 @@ li{
     transition: all .1s ease;
 }
 .table.tabe-hover.table-bordered tbody tr td a:hover{
-    font-weight: bold;
-    color: #960000;
+    color: #0011ff;
 }
+
 .table.tabe-hover.table-bordered tbody td{
     border:5px solid #ffffff;
     border-radius: 2em;
@@ -158,14 +160,15 @@ li{
 .table.tabe-hover.table-bordered tbody td b{
     align-items: center;
     margin-left: 10px;
-    font:normal normal normal 16px/20px Roboto;
+    font:normal normal bold 16px/20px Roboto;
     opacity: 1;
 }
 
 .table.tabe-hover.table-bordered tbody tr:nth-of-type(even){
     background-color: #3F97A7;
-    color: #ffffff;
+    transition: all .1s ease;
 }
+
 .table.tabe-hover.table-bordered tbody tr:nth-of-type(even) a{
     text-decoration: none;
     text-align: left center;
@@ -174,6 +177,26 @@ li{
     opacity: 1;
     transition: all .1s ease;
 }
+.table.tabe-hover.table-bordered tbody tr:nth-of-type(even) a:hover{
+    color: #0011ff;
+}
+/*////////////////////////pagina resultados graficas////////////////////////////////*/
+.row.d-flex.justify-content-evenly{
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-gap: 10px !important;
+}
+
+.row.d-flex.justify-content-evenly .card-header{
+    background-color:  #3f97a7d7 !important;
+}
+
+.col-md-12.text-center h2{
+    background-color: #3f97a733;
+    width: 50%;
+    margin-left: 25%;
+    border-radius: 20px;
+}  
 /*////////////////////////por si la pantalla se hace mas pequeña////////////////////////////////*/
 
 .burger {
@@ -201,16 +224,18 @@ li{
         overflow-x: hidden;
     }
     .nav-links{
-        position: absolute;
+        position: absolute !important;
         right: 0px;
         height: 80vh;
         top: 20vh;
-        background-color: #D1D1D1;
+        background-color: #ffffff;
+        border:1px solid #969696;
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 50%;
         transform: translate(100%);
+        z-index: 999;
         transition: transform 0.5s ease-in;
     }
     .nav-links li{

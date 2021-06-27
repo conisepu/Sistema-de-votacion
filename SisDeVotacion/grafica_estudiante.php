@@ -164,8 +164,8 @@
 	    ?>
 
             <div class="row my-3">
-                <div class="col-md-12 text-center  ">
-                    <h2> <?php echo $raw['pregunta'] ?>  <h2>
+                <div class="col-md-12 text-center">
+                    <h2> <?php echo $raw['pregunta'] ?>  </h2>
                     <?php if($raw['type'] != 'textfield_s'): ?>
                     <canvas id="<?php echo $raw['id_pregunta'] ?>" width="550" height="450" class ="mx-auto"></canvas>
                     <?php else: ?> 
