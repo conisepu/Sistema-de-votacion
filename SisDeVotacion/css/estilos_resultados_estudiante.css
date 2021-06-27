@@ -180,7 +180,7 @@ li{
 .table.tabe-hover.table-bordered tbody tr:nth-of-type(even) a:hover{
     color: #0011ff;
 }
-/*////////////////////////pagina resultados graficas////////////////////////////////*/
+/*////////////////////////pagina resultados graficas generales////////////////////////////////*/
 .row.d-flex.justify-content-evenly{
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
@@ -196,7 +196,11 @@ li{
     width: 50%;
     margin-left: 25%;
     border-radius: 20px;
-}  
+}
+/*////////////////////////pagina resultados graficas CEIND////////////////////////////////*/
+.row.d-flex.justify-content-around .card-header{
+    background-color:  #3f97a7d7 !important;
+}
 /*////////////////////////por si la pantalla se hace mas pequeña////////////////////////////////*/
 
 .burger {
