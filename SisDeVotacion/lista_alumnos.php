@@ -99,7 +99,7 @@
                                 if(mysqli_query($conn,$delete))
                                 {
                                     #var_dump(mysqli_query($conn,$query));
-                                    echo "Se actualizó el excel";
+                                    echo "Se a actualizado la lista de estudiantes correctamente";
                                     echo "<br>";
                                 }
 
