@@ -14,7 +14,7 @@
                 </li>
 
                 <li>
-                     <a href="#">Contacto </a> 
+                     <a href="contacto.php">Contacto </a> 
                 </li>
 
                 <li>                
