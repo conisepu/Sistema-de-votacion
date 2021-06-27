@@ -14,6 +14,7 @@ if (isset($_POST['register'])) {
 		$resultado2 = mysqli_query($conn,$consulta2);
 
 		if(!empty($resultado2->fetch_array())){
+			include('../enviar_correo/recuperar_pass.php');
 			header('Location:../index.php?fallo=usuario');
 		}else{
 

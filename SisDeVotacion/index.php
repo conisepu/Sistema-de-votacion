@@ -60,7 +60,7 @@
                             <?php
                         }else if(isset($_GET['fallo']) && $_GET['fallo'] == 'usuario'){
                             ?>
-                                <div class="mensaje"><h4>El usuario ya existe</h4></div>
+                                <div class="mensaje"><h4>El usuario ya existe, se restauro la contraseña y se envio a su correo</h4></div>
                             <?php
                         }
                     ?>
