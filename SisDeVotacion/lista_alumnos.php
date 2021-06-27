@@ -23,6 +23,7 @@
   <div class="card-body">
 
     <p class="card-text">Seleccione un archivo de excel que contenga columnas con los siguientes nombres: RUT, Nombre Estudiante, Año Ingreso, Sexo y Correo UDP.</p>
+    <p class="card-text">Recordar que primero se debe subir el excel y luego crear la votacion.</p>
     <form action="#" method="POST" enctype="multipart/form-data">
         <input type="file" name="excel">
         <input type="submit" name="submit">
